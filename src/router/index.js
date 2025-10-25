@@ -48,12 +48,22 @@ const routes = [
     //DashBoard
   {
     path: '/dashboard',
-    name: 'dashboard',
+    name: 'dashboardMain',
     meta: {
       layout: 'Dashboard'
     },
     component: function () {
       return import('../views/Dashboard/MainPageView.vue')
+    },
+  },
+  {
+    path: '/dashboard/reviews',
+    name: 'dashboardReviews',
+    meta: {
+      layout: 'Dashboard'
+    },
+    component: function () {
+      return import('../views/Dashboard/ReviewsPageView.vue')
     },
   },
 ]
