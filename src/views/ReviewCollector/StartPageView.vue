@@ -2,7 +2,7 @@
   <div>
     <prime-card style="width: 100%; overflow: hidden">
       <template #header>
-        <img alt="user header"  src="../assets/Chervinsky1.png" />
+        <img alt="user header"  src="../../assets/Chervinsky1.png" />
       </template>
       <template #title>Червинский А.Н.</template>
       <template #subtitle>Врач-терапевт участковый</template>

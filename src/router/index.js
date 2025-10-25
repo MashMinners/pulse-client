@@ -12,7 +12,7 @@ const routes = [
       layout: 'Application'
     },
     component: function () {
-      return import('../views/StartPageView.vue')
+      return import('../views/ReviewCollector/StartPageView.vue')
     },
   },
   {
@@ -22,7 +22,7 @@ const routes = [
       layout: 'Application'
     },
     component: function () {
-      return import('../views/GoodPageView.vue')
+      return import('../views/ReviewCollector/GoodPageView.vue')
     },
   },
   {
@@ -32,7 +32,28 @@ const routes = [
       layout: 'Application'
     },
     component: function () {
-      return import('../views/BadPageView.vue')
+      return import('../views/ReviewCollector/BadPageView.vue')
+    },
+  },
+  {
+    path: '/finish',
+    name: 'finish',
+    meta: {
+      layout: 'Application'
+    },
+    component: function () {
+      return import('../views/ReviewCollector/FinishPageView.vue')
+    },
+  },
+    //DashBoard
+  {
+    path: '/dashboard',
+    name: 'dashboard',
+    meta: {
+      layout: 'Dashboard'
+    },
+    component: function () {
+      return import('../views/Dashboard/MainPageView.vue')
     },
   },
 ]

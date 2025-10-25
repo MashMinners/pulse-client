@@ -1,13 +1,12 @@
 <template>
   <div>
     <prime-panel>
-      <prime-message severity="error">
+      <prime-message severity="success">
         <template #icon>
-          <img class="employee-photo centered" :src="require('../assets/Chervinsky1.png')" width="100" style="border-radius: 50%">
+          <img class="employee-photo centered" :src="require('../../assets/Chervinsky1.png')" width="100" style="border-radius: 50%">
         </template>
-        <span class="ml-2"> Ваша жалоба является полностью <b>АНОНИМНОЙ</b> и нужна нам для оценки работы выбранного специалиста.
-          Вы можете быть уверены в полной <b>АНОНИМНОСТИ!</b>. Но если вы хотите, чтобы по вашей жалобе мы с Вами связались,
-          пожалуйста оставьте ВАШ контактный телефон, а так же Вашы Имя и Отчество
+        <span class="ml-2"> Ваш отзыв является полностью <b>АНОНИМНЫМ</b> и нужен нам для оценки работы выбранного Вами специалиста на основе Вашего мнения.
+        Но так же вы можете оставить Ваш контакт в случае если Вам необходима обратная связь
         </span>
       </prime-message>
      <prime-divider></prime-divider>
@@ -24,7 +23,7 @@
         <prime-textarea id="review-area" v-model="value2" autoResize rows="5" cols="30" />
       </div>
       <div class="flex-auto mb-2">
-        <prime-button label="Отправить" severity="danger"></prime-button>
+        <prime-button label="Отправить" @click="finishGood"></prime-button>
       </div>
       <prime-divider></prime-divider>
     </prime-panel>
@@ -32,8 +31,26 @@
 </template>
 
 <script>
+import {mapActions, mapGetters, mapMutations} from "vuex";
+
 export default {
-  name: "GoodPageView"
+  name: "GoodPageView",
+  methods: {
+    ...mapMutations({
+
+    }),
+    ...mapActions({
+
+    }),
+    finishGood(){
+      this.$router.push({name: 'finish'});
+    }
+  },
+  computed: {
+    ...mapGetters({
+
+    })
+  }
 }
 </script>
 
