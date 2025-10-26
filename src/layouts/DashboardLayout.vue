@@ -6,7 +6,7 @@
       </template>
       <template #end>
         <div class="flex items-center gap-2">
-          <prime-avatar image="/images/Shilova.png" style="width: 64px; height: 64px" shape="circle"/>
+          <prime-avatar image="/images/Shilova.png" style="width: 48px; height: 48px" shape="circle"/>
           <prime-button label="Выход" icon="pi pi-sign-out" class="flex-auto" severity="danger" text></prime-button>
         </div>
       </template>
