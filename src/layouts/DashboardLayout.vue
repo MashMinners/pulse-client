@@ -2,9 +2,19 @@
   <div id="app-header">
     <prime-toolbar>
       <template #start>
-        <prime-button class="p-button-sm" icon="pi pi-bars" @click="visible = true" />
+        <prime-button class="p-button-sm" icon="pi pi-bars" @click="visible = true" severity="contrast"/>
+        <div class="flex items-center ml-3">
+          <prime-message severity="contrast" >{{ sectionTitle }}</prime-message>
+        </div>
       </template>
       <template #end>
+        <div class="flex items-center mr-3 mt-2">
+          <prime-button type="button"  variant="outlined" size="large" text severity="contrast">
+            <prime-overlay-badge value="2" severity="danger">
+              <i class="pi pi-bell" style="font-size: 2rem" />
+            </prime-overlay-badge>
+          </prime-button>
+        </div>
         <div class="flex items-center gap-2">
           <prime-avatar image="/images/Shilova.png" style="width: 48px; height: 48px" shape="circle"/>
           <prime-button label="Выход" icon="pi pi-sign-out" class="flex-auto" severity="danger" text></prime-button>
@@ -14,7 +24,7 @@
   </div>
   <div id="app-content">
     <prime-card>
-      <template #title>{{ sectionTitle }}</template>
+      <template #title>1</template>
       <template #content>
         <component
             :is="getComponent"
@@ -34,7 +44,7 @@
         <div class="overflow-y-auto">
           <prime-menu :model="menuItems">
             <template #item="{ item, props }">
-              <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom @click="visible = false">
+              <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom @click="goLink(item.title)">
                 <a :href="href" v-bind="props.action" @click="navigate">
                   <span :class="item.icon" />
                   <span class="ml-2">{{ item.label }}</span>
@@ -49,8 +59,8 @@
         </div>
         <template #footer>
           <div class="flex items-center gap-2">
-            <prime-button label="Account" icon="pi pi-user" class="flex-auto" variant="outlined"></prime-button>
-            <prime-button label="Logout" icon="pi pi-sign-out" class="flex-auto" severity="danger" text></prime-button>
+            <prime-button label="Аккаунт" icon="pi pi-user" class="flex-auto" variant="outlined"></prime-button>
+            <prime-button label="Выход" icon="pi pi-sign-out" class="flex-auto" variant="outlined" severity="danger" ></prime-button>
           </div>
         </template>
       </prime-drawer>
@@ -59,13 +69,22 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import {mapGetters, mapMutations} from "vuex";
 
 export default {
   name: "ControlPanelLayout",
   data() {
     return {
       visible: false,
+    }
+  },
+  methods: {
+    ...mapMutations({
+      setSectionTitle: "dashboard/SET_SECTION_TITLE"
+    }),
+    goLink(title){
+      this.visible = false;
+      this.setSectionTitle(title);
     }
   },
   computed: {

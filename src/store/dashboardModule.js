@@ -4,16 +4,20 @@
 export const dashboardModule = {
     state:() => ({
         section: {
-            title: 'Начало'
+            title: 'Главная'
         },
         menuItems: [
-            { label: 'Главная',
+            {
+                label: 'Главная',
                 icon: 'pi pi-home',
                 route: '/dashboard',
+                title: 'Главная'
             },
-            { label: 'Контроль отзывов',
+            {
+                label: 'Контроль отзывов',
                 icon: 'pi pi-book',
-                route: '/dashboard/reviews'
+                route: '/dashboard/reviews',
+                title: 'Контроль отзывов'
             },
         ]
 
@@ -27,7 +31,9 @@ export const dashboardModule = {
         }
     },
     mutations: {
-
+        ['SET_SECTION_TITLE'](state, title){
+            state.section.title = title;
+        }
     },
     actions: {
 
