@@ -1,14 +1,10 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
+import {appModule} from "@/store/appModule";
+import {dashboardModule} from "@/store/dashboardModule";
 
 export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
+    app: appModule,
+    dashboard: dashboardModule
   }
 })

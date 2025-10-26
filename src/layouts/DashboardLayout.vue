@@ -2,7 +2,13 @@
   <div id="app-header">
     <prime-toolbar>
       <template #start>
-        <prime-button class="p-button-sm" icon="pi pi-arrow-right" @click="visible = true" />
+        <prime-button class="p-button-sm" icon="pi pi-bars" @click="visible = true" />
+      </template>
+      <template #end>
+        <div class="flex items-center gap-2">
+          <prime-avatar image="/images/Shilova.png" style="width: 64px; height: 64px" shape="circle"/>
+          <prime-button label="Выход" icon="pi pi-sign-out" class="flex-auto" severity="danger" text></prime-button>
+        </div>
       </template>
     </prime-toolbar>
   </div>
@@ -21,12 +27,25 @@
       <prime-drawer v-model:visible="visible" header="Меню">
         <template #header>
           <div class="flex items-center gap-2">
-            <prime-avatar image="@/assets/img.png" shape="circle" />
-            <span class="font-bold">Администратор</span>
+            <prime-avatar image="/images/Shilova.png" shape="circle" size="xlarge"/>
+            <p class="font-bold">Администратор</p>
           </div>
         </template>
         <div class="overflow-y-auto">
-          <prime-menu :model="items"></prime-menu>
+          <prime-menu :model="menuItems">
+            <template #item="{ item, props }">
+              <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom @click="visible = false">
+                <a :href="href" v-bind="props.action" @click="navigate">
+                  <span :class="item.icon" />
+                  <span class="ml-2">{{ item.label }}</span>
+                </a>
+              </router-link>
+              <a v-else :href="item.url" :target="item.target" v-bind="props.action">
+                <span :class="item.icon" />
+                <span class="ml-2">{{ item.label }}</span>
+              </a>
+            </template>
+          </prime-menu>
         </div>
         <template #footer>
           <div class="flex items-center gap-2">
@@ -47,10 +66,6 @@ export default {
   data() {
     return {
       visible: false,
-      items: [
-        { label: 'Контроль отзывов', icon: 'pi pi-plus', command: () => {this.$router.push('/dashboard/reviews');}},
-        { label: 'Search', icon: 'pi pi-search' }
-      ]
     }
   },
   computed: {
@@ -58,8 +73,8 @@ export default {
       return (this.$route.matched[0].components.default)
     },
     ...mapGetters({
-      sectionTitle: 'cp/getSectionTitle',
-      menuItems: 'cp/getMenuItems',
+      sectionTitle: 'dashboard/getSectionTitle',
+      menuItems: 'dashboard/getMenuItems',
     })
   }
 }

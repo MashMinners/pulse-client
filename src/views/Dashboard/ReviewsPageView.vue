@@ -1,5 +1,5 @@
 <template>
-  <div>Таблицы с отзывами</div>
+  <div>123</div>
 </template>
 
 <script>
