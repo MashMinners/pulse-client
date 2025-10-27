@@ -37,19 +37,29 @@ export default {
   name: "GoodPageView",
   methods: {
     ...mapMutations({
-
+      //Вот здесь мутация которая в стате ставит данные для отображения на финише но в хорошей форме
     }),
     ...mapActions({
-
+      sendGoodReview: "app/sendGoodReview"
     }),
     finishGood(){
       this.$router.push({name: 'finish'});
+      this.sendGoodReview();
+    },
+    checkDoctorId(){
+      //Если случайно обновил страницу, то перекинет (сейчас на финиш, позже на страницу ошибки с педложением отскнаировать снова)
+      if(this.getDoctorId === null){
+        this.$router.push({name: 'finish'});
+      }
     }
   },
   computed: {
     ...mapGetters({
-
+      getDoctorId: "app/getDoctorId"
     })
+  },
+  mounted(){
+    this.checkDoctorId();
   }
 }
 </script>

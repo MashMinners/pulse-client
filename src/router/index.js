@@ -2,11 +2,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   {
-    path: '/start',
-    redirect: '/'
+    path: '/',
+    redirect: '/info'
   },
   {
-    path: '/',
+    path: '/start/:uuid',
     name: 'start',
     meta: {
       layout: 'Application'

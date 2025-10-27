@@ -32,8 +32,26 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
-  name: "GoodPageView"
+  name: "GoodPageView",
+  methods:{
+    checkDoctorId(){
+      //Если случайно обновил страницу, то перекинет (сейчас на финиш, позже на страницу ошибки с педложением отскнаировать снова)
+      if(this.getDoctorId === null){
+        this.$router.push({name: 'finish'});
+      }
+    }
+  },
+  computed: {
+    ...mapGetters({
+      getDoctorId: "app/getDoctorId"
+    })
+  },
+  mounted(){
+    this.checkDoctorId();
+  }
 }
 </script>
 

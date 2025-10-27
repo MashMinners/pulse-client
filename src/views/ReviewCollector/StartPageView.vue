@@ -23,15 +23,23 @@
 </template>
 
 <script>
+import {mapMutations} from "vuex";
+
 export default {
   name: "StartPageView",
   methods: {
+    ...mapMutations({
+      setDoctorId: "app/SET_DOCTOR_ID"
+    }),
     GoGood(){
       this.$router.push('/good-review');
     },
     GoBad(){
       this.$router.push('/bad-review');
     },
+  },
+  mounted(){
+    this.setDoctorId(this.$route.params.uuid);
   }
 }
 </script>
