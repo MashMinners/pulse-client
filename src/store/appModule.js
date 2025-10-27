@@ -1,4 +1,4 @@
-//import connections from "@/configs/connections";
+import connections from "@/configs/connections";
 import axios from "axios";
 
 export const appModule = {
@@ -32,7 +32,7 @@ export const appModule = {
     actions: {
         async sendGoodReview({state, commit}, data) {
             // eslint-disable-next-line no-unused-vars
-            const response = await axios.post('http://192.168.0.10/review/good?XDEBUG_SESSION_START=PHPSTORM', {
+            const response = await axios.post(connections.api.production.good ? connections.api.production.good : connections.api.dev.good, {
                 doctorID: state.doctorID,
                 pacient: data.pacient,
                 telephone: data.telephone,
