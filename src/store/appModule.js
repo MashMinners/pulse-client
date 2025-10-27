@@ -4,31 +4,54 @@ import axios from "axios";
 export const appModule = {
     state:() => ({
         doctorID: null,
-
+        pacient: null,
+        reviewStatus: null
     }),
     getters: {
         getDoctorId(state){
             return state.doctorID;
+        },
+        getReviewStatus(state){
+            return state.reviewStatus;
+        },
+        getPacient(state){
+            return state.pacient
         }
     },
     mutations: {
         ['SET_DOCTOR_ID'](state, id){
            state.doctorID = id;
         },
+        // eslint-disable-next-line no-unused-vars
+        ['FINISH'](state, data){
+            state.pacient = data.pacient
+            state.reviewStatus = data.reviewStatus
+        }
 
     },
     actions: {
-        // eslint-disable-next-line no-unused-vars
-        async getStomIntersections({state, commit}) {
-            const response = await axios.get('http://192.168.0.10/buffer/stom/intersections?XDEBUG_SESSION_START=PHPSTORM');
-            commit('GET_STOM_INTERSECTIONS', response.data);
+        async sendGoodReview({state, commit}, data) {
+            // eslint-disable-next-line no-unused-vars
+            const response = await axios.post('http://192.168.0.10/review/good?XDEBUG_SESSION_START=PHPSTORM', {
+                doctorID: state.doctorID,
+                pacient: data.pacient,
+                telephone: data.telephone,
+                message: data.message
+
+            });
+            commit('FINISH', {pacient: data.pacient, reviewStatus: 'good'})
         },
 
-        async sendGoodReview({state, commit}) {
-            const response = await axios.post('http://192.168.0.10/review/good?XDEBUG_SESSION_START=PHPSTORM', {
-                doctorID: state.doctorID
+        async sendBadReview({state, commit}, data) {
+            // eslint-disable-next-line no-unused-vars
+            const response = await axios.post('http://192.168.0.10/review/bad?XDEBUG_SESSION_START=PHPSTORM', {
+                doctorID: state.doctorID,
+                pacient: data.pacient,
+                telephone: data.telephone,
+                message: data.message
+
             });
-            commit('FINISH', response)
+            commit('FINISH', {pacient: data.pacient, reviewStatus: 'bad'})
         }
 
     },

@@ -12,15 +12,15 @@
      <prime-divider></prime-divider>
       <div class="flex-auto mb-2">
         <label for="ssn" class="font-bold block mb-2">Представьтесь:</label>
-        <prime-input-text v-model="value1"  placeholder="Имя, Отчество" />
+        <prime-input-text v-model="pacient"  placeholder="Имя, Отчество" />
       </div>
       <div class="flex-auto mb-2">
         <label for="ssn" class="font-bold block mb-2">Контактный номер телефона:</label>
-        <prime-input-mask id="ssn" v-model="value" mask="+7(999)999-99-99" placeholder="+7(999)999-99-99" />
+        <prime-input-mask id="ssn" v-model="telephone" mask="+7(999)999-99-99" placeholder="+7(999)999-99-99" />
       </div>
       <div class="flex-auto mb-2">
         <label for="review-area" class="font-bold block mb-2">Поделитесь своим мнением:</label>
-        <prime-textarea id="review-area" v-model="value2" autoResize rows="5" cols="30" />
+        <prime-textarea id="review-area"  v-model="message" autoResize rows="5" cols="30" />
       </div>
       <div class="flex-auto mb-2">
         <prime-button label="Отправить" @click="finishGood"></prime-button>
@@ -35,6 +35,13 @@ import {mapActions, mapGetters, mapMutations} from "vuex";
 
 export default {
   name: "GoodPageView",
+  data() {
+    return {
+      pacient: null,
+      telephone: null,
+      message: null
+    }
+  },
   methods: {
     ...mapMutations({
       //Вот здесь мутация которая в стате ставит данные для отображения на финише но в хорошей форме
@@ -43,8 +50,12 @@ export default {
       sendGoodReview: "app/sendGoodReview"
     }),
     finishGood(){
+      this.sendGoodReview({
+        pacient: this.pacient,
+        telephone: this.telephone,
+        message: this.message
+      });
       this.$router.push({name: 'finish'});
-      this.sendGoodReview();
     },
     checkDoctorId(){
       //Если случайно обновил страницу, то перекинет (сейчас на финиш, позже на страницу ошибки с педложением отскнаировать снова)
