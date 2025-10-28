@@ -18,7 +18,7 @@
     <prime-knob class="centered-text mt-1 mb-1" v-model="timerCount" :max="60"/>
   </div>
   <div class="flex-auto mt-3">
-    <prime-button severity="info" @click="goInfo">Информация</prime-button>
+    <prime-button severity="info" @click="goInfo">Информация!</prime-button>
   </div>
 
 </template>
