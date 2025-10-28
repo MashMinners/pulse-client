@@ -26,13 +26,14 @@ import InputMask from "primevue/inputmask";
 import Avatar from "primevue/avatar";
 import Ripple from "primevue/ripple";
 import OverlayBadge from "primevue/overlaybadge";
+import Tag from "primevue/tag";
 import ('primeicons/primeicons.css')
 import ('primeflex/primeflex.css');
 export default {
   modules: [
       InputText, Button, Fieldset, ProgressBar, Dialog,  Message, Textarea, Image, Card, Knob, Panel, Toolbar,
       Menu, DataTable, Column, Tabs, TabList, TabPanel, Tab, TabPanels, Drawer, Divider, InputMask, Avatar, Ripple,
-      OverlayBadge
+      OverlayBadge, Tag
   ],
   directives: [
         {name: "tooltip", subject: Tooltip}
