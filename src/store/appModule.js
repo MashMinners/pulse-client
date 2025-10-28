@@ -36,10 +36,11 @@ export const appModule = {
                 doctorID: state.doctorID,
                 pacient: data.pacient,
                 telephone: data.telephone,
-                message: data.message
+                message: data.message,
+                status: data.reviewStatus
 
             });
-            commit('FINISH', {pacient: data.pacient, reviewStatus: 'good'})
+            commit('FINISH', {pacient: data.pacient, reviewStatus: data.reviewStatus})
         },
 
         async sendBadReview({state, commit}, data) {

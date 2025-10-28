@@ -45,6 +45,16 @@ const routes = [
       return import('../views/ReviewCollector/FinishPageView.vue')
     },
   },
+  {
+    path: '/info',
+    name: 'information',
+    meta: {
+      layout: 'Application'
+    },
+    component: function () {
+      return import('../views/ReviewCollector/InformationPageView.vue')
+    },
+  },
     //DashBoard
   {
     path: '/dashboard',

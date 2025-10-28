@@ -4,7 +4,22 @@
 
 <script>
 export default {
-  name: "ReviewsPageView"
+  name: "ReviewsPageView",
+  data() {
+    return {
+     reviews: {
+       0: {
+         doctorID: '',
+         doctorFullName: '',
+         doctorPhoto: '',
+         pacient: '',
+         telephone: '',
+         message: '',
+         reviewStatus: ''
+       }
+     }
+    }
+  },
 }
 </script>
 

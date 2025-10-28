@@ -53,7 +53,8 @@ export default {
       this.sendGoodReview({
         pacient: this.pacient,
         telephone: this.telephone,
-        message: this.message
+        message: this.message,
+        reviewStatus: 'good'
       });
       this.$router.push({name: 'finish'});
     },
