@@ -1,31 +1,50 @@
 <template>
-  <div class="card">
-    <prime-data-table
-        :value="reviews"
-        stripedRows
-        tableStyle="min-width: 50rem"
-        size="small"
-    >
-      <template #header>
-        <div class="flex flex-wrap items-center justify-between gap-2">
-          <span class="text-xl font-bold">Products</span>
-          <prime-button icon="pi pi-refresh" rounded raised />
-        </div>
-      </template>
-      <prime-column header="#">
-        <template #body="slotProps">
-          <!--<img :src="require('@/assets/'+ slotProps.data.doctorPhoto)" style="width: 64px; border-radius: 10px;"/>-->
-          <prime-avatar :image="`/images/${slotProps.data.doctorPhoto}`" style="width: 64px; height: 64px" shape="circle"/>
+  <div class="formgrid grid">
+    <div class="col-6">
+      <prime-toolbar class="mb-6">
+        <template #start>
+          <prime-button label="New" icon="pi pi-plus" class="mr-2" @click="openNew" />
+          <prime-button label="Delete" icon="pi pi-trash" severity="danger" variant="outlined" @click="confirmDeleteSelected" :disabled="!selectedProducts || !selectedProducts.length" />
         </template>
-      </prime-column>
-      <prime-column field="doctorFullName" header="Доктор"></prime-column>
-      <prime-column header="Статус">
-        <template #body="slotProps">
-          <prime-tag :value="slotProps.data.reviewStatusMes" :severity="getSeverity(slotProps.data)" />
+        <template #end>
+          <prime-icon-field>
+            <prime-input-icon>
+              <i class="pi pi-search" />
+            </prime-input-icon>
+            <prime-input-text placeholder="Найти" />
+          </prime-icon-field>
         </template>
-      </prime-column>
-    </prime-data-table>
-    <prime-divider></prime-divider>
+      </prime-toolbar>
+      <prime-data-table
+          :value="reviews"
+          stripedRows
+          tableStyle="min-width: 50rem"
+          size="small"
+      >
+        <prime-column header="" style="width:96px">
+          <template #body="slotProps">
+            <!--<img :src="require('@/assets/'+ slotProps.data.doctorPhoto)" style="width: 64px; border-radius: 10px;"/>-->
+            <prime-avatar :image="`/images/${slotProps.data.doctorPhoto}`" style="width: 64px; height: 64px" shape="circle"/>
+          </template>
+        </prime-column>
+        <prime-column field="doctorFullName" header="Сотрудник" sortable ></prime-column>
+        <!--<prime-column header="Статус">
+          <template #body="slotProps">
+            <prime-tag :value="slotProps.data.reviewStatusMes" :severity="getSeverity(slotProps.data)" />
+          </template>
+        </prime-column>-->
+        <prime-column header="Положительные">
+          <template #body>
+            <prime-button label="" outlined rounded icon="pi pi-check" severity="success" class="mx-1" badge="2"/>
+          </template>
+        </prime-column>
+        <prime-column header="Отрицательные">
+          <template #body>
+            <prime-button label="" rounded icon="pi pi-times" severity="danger" class="mx-1" badge="2"/>
+          </template>
+        </prime-column>
+      </prime-data-table>
+    </div>
   </div>
 </template>
 
