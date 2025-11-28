@@ -46,6 +46,16 @@ export const dashboardModule = {
                     employeeFullName : "Alexander Kronos",
                     employeePositiveRating: 3,
                     employeeNegativeRating: 1
+                },
+                {
+                    employeeFullName : "Obivan Kanabis",
+                    employeePositiveRating: 5,
+                    employeeNegativeRating: 2
+                },
+                {
+                    employeeFullName : "Виктор Ющинка",
+                    employeePositiveRating: 2,
+                    employeeNegativeRating: 1
                 }
             ]
             commit('SET_EMPLOYEES_WITH_RATING', employees)
