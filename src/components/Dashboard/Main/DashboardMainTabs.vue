@@ -28,15 +28,27 @@
 import {mapGetters} from "vuex";
 import DashboardMainEmployeesTable from "@/components/Dashboard/Main/DashboardMainEmployeesTable";
 import DashboardMainEmployeesChart from "@/components/Dashboard/Main/DashboardMainEmployeesChart.vue";
+import {mapActions} from "vuex";
 
 export default {
   name: "DashboardMainTabs",
   components: {DashboardMainEmployeesChart, DashboardMainEmployeesTable},
+  methods: {
+    ...mapActions({
+      getEmployeesWithRatingAction: "dashboard/getEmployeesWithRatingAction"
+    }),
+    getEmployees(){
+      this.getEmployeesWithRatingAction()
+    }
+  },
+  created() {
+    this.getEmployees();
+  },
   computed: {
     ...mapGetters({
       getEmployeesWithRating: "dashboard/getEmployeesWithRating"
     })
-  },
+  }
 }
 </script>
 

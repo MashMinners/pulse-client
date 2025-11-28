@@ -1,6 +1,5 @@
 //import connections from "@/configs/connections";
-
-//import axios from "axios";
+import axios from "axios";
 
 export const dashboardModule = {
     state:() => ({
@@ -40,7 +39,8 @@ export const dashboardModule = {
     mutations: {
         ['SET_EMPLOYEES_WITH_RATING'](state, employees){
             state.employees.withRating = employees
-            console.log(state.employees.withRating)
+            //console.log(state.employees.withRating)
+            console.log(employees)
         },
         ['SET_SECTION_TITLE'](state, title){
             state.section.title = title;
@@ -49,29 +49,29 @@ export const dashboardModule = {
     actions: {
         // eslint-disable-next-line no-unused-vars
         async getEmployeesWithRatingAction({state, commit}) {
-            //const response = await axios.get('http://192.168.0.14/dashboard/main/employees?XDEBUG_SESSION_START=PHPSTORM');
-            //commit('SET_EMPLOYEES_WITH_RATING', response.data);
-            let employees = [
+            const response = await axios.get('http://192.168.0.14/dashboard/main/employees?XDEBUG_SESSION_START=PHPSTORM');
+            commit('SET_EMPLOYEES_WITH_RATING', response.data);
+            /*let employees = [
                 {
                     employeeFullName : "Alexander Kronos",
                     employeePhoto: "Shilova.png",
-                    employeePositiveRating: 3,
-                    employeeNegativeRating: 1
+                    employeePositiveRatingCount: 3,
+                    employeeNegativeRatingCount: 1
                 },
                 {
                     employeeFullName : "Obivan Kanabis",
                     employeePhoto: "Kulagina.png",
-                    employeePositiveRating: 5,
-                    employeeNegativeRating: 2
+                    employeePositiveRatingCount: 5,
+                    employeeNegativeRatingCount: 2
                 },
                 {
                     employeeFullName : "Виктор Ющинка",
                     employeePhoto: "Kulagina.png",
-                    employeePositiveRating: 2,
-                    employeeNegativeRating: 1
+                    employeePositiveRatingCount: 2,
+                    employeeNegativeRatingCount: 1
                 }
             ]
-            commit('SET_EMPLOYEES_WITH_RATING', employees)
+            commit('SET_EMPLOYEES_WITH_RATING', employees)*/
         },
     },
     namespaced: true
