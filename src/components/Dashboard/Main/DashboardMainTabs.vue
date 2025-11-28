@@ -2,14 +2,19 @@
   <div>
     <prime-tabs value="0">
       <prime-tabList>
-        <prime-tab value="0">Пересечения по стационару и диспансеризации</prime-tab>
+        <prime-tab value="0">Рейтинг сотрудников</prime-tab>
       </prime-tabList>
       <prime-tab-panels>
         <prime-tab-panel value="0">
-          <div v-if="getEmployeesWithRating.length !==0">
-            <prime-message severity="error">Записи пользователей</prime-message>
+          <div id="employyes-rating-table" class="col-6">
+            <div v-if="getEmployeesWithRating.length !==0">
+              <prime-message severity="success">Рейтинг сотрудников</prime-message>
+            </div>
+            <dashboard-main-employees-table :records="getEmployeesWithRating"></dashboard-main-employees-table>
           </div>
-          <dashboard-main-employees-table :records="getEmployeesWithRating"></dashboard-main-employees-table>
+          <div id="employees-rating-chart">
+
+          </div>
         </prime-tab-panel>
       </prime-tab-panels>
     </prime-tabs>
