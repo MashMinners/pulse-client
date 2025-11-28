@@ -24,7 +24,8 @@ export default {
   },
   data() {
     return {
-      visible: false
+      visible: false,
+      sectionTitle: "Заголовок страницы"
     }
   }
 }

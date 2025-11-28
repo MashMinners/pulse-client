@@ -41,13 +41,13 @@ export const dashboardModule = {
         async getEmployeesWithRatingAction({state, commit}) {
             //const response = await axios.get('http://192.168.0.14/dashboard/main/employees?XDEBUG_SESSION_START=PHPSTORM');
             //commit('SET_EMPLOYEES_WITH_RATING', response.data);
-            let employees = {
-                0: {
+            let employees = [
+                {
                     employeeFullName : "Alexander Kronos",
                     employeePositiveRating: 3,
                     employeeNegativeRating: 1
                 }
-            }
+            ]
             commit('SET_EMPLOYEES_WITH_RATING', employees)
         },
     },
