@@ -3,9 +3,7 @@
 
 export const appModule = {
     state:() => ({
-        employees: {
-            withRating: []
-        }
+
     }),
     getters: {
 

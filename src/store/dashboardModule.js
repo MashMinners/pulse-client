@@ -1,6 +1,6 @@
 //import connections from "@/configs/connections";
 
-import axios from "axios";
+//import axios from "axios";
 
 export const dashboardModule = {
     state:() => ({
@@ -19,7 +19,10 @@ export const dashboardModule = {
                 icon: 'pi pi-fw pi-trash',
                 to: "/dashboard/users"
             }
-        ]
+        ],
+        employees: {
+            withRating : []
+        }
 
     }),
     getters: {
@@ -30,13 +33,22 @@ export const dashboardModule = {
     mutations: {
         ['SET_EMPLOYEES_WITH_RATING'](state, employees){
             state.employees.withRating = employees
+            console.log(state.employees.withRating)
         }
     },
     actions: {
         // eslint-disable-next-line no-unused-vars
-        async getEmployeesWithRating({state, commit}) {
-            const response = await axios.get('http://192.168.0.14/dashboard/main/employees?XDEBUG_SESSION_START=PHPSTORM');
-            commit('SET_EMPLOYEES_WITH_RATING', response.data);
+        async getEmployeesWithRatingAction({state, commit}) {
+            //const response = await axios.get('http://192.168.0.14/dashboard/main/employees?XDEBUG_SESSION_START=PHPSTORM');
+            //commit('SET_EMPLOYEES_WITH_RATING', response.data);
+            let employees = {
+                0: {
+                    employeeFullName : "Alexander Kronos",
+                    employeePositiveRating: 3,
+                    employeeNegativeRating: 1
+                }
+            }
+            commit('SET_EMPLOYEES_WITH_RATING', employees)
         },
     },
     namespaced: true
