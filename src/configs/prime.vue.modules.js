@@ -21,12 +21,17 @@ import Tab from 'primevue/tab';
 import TabPanels from 'primevue/tabpanels';
 import TabPanel from 'primevue/tabpanel';
 import Drawer from "primevue/drawer";
+import IconField from "primevue/iconfield";
+import InputIcon from "primevue/inputicon";
+import OverlayBadge from "primevue/overlaybadge";
+import Avatar from "primevue/avatar";
 import ('primeicons/primeicons.css')
 import ('primeflex/primeflex.css');
 export default {
     modules: [
         InputText, Button, Fieldset, ProgressBar, Dialog,  Message, Textarea, Image, Card, Knob, Panel, Toolbar,
-        Menu, DataTable, Column, Tabs, TabList, TabPanel, Tab, TabPanels, Drawer
+        Menu, DataTable, Column, Tabs, TabList, TabPanel, Tab, TabPanels, Drawer, IconField, InputIcon, OverlayBadge,
+        Avatar
     ],
     directives: [
         {name: "tooltip", subject: Tooltip}

@@ -7,18 +7,19 @@ export const dashboardModule = {
         section: {
             title: 'Начало'
         },
-        sideBarVisible: false,
         menuItems: [
             {
-                label: 'Начало',
-                icon: 'pi pi-fw pi-plus',
-                to: "/dashboard/start"
+                label: 'Главная',
+                icon: 'pi pi-home',
+                route: '/dashboard/main',
+                title: 'Главная'
             },
             {
-                label: 'Пользователи',
-                icon: 'pi pi-fw pi-trash',
-                to: "/dashboard/users"
-            }
+                label: 'Контроль отзывов',
+                icon: 'pi pi-book',
+                route: '/dashboard/reviews',
+                title: 'Контроль отзывов'
+            },
         ],
         employees: {
             withRating : []
@@ -26,6 +27,12 @@ export const dashboardModule = {
 
     }),
     getters: {
+        getSectionTitle(state){
+            return state.section.title;
+        },
+        getMenuItems(state){
+            return state.menuItems;
+        },
         getEmployeesWithRating(state){
             return state.employees.withRating;
         },
@@ -34,7 +41,10 @@ export const dashboardModule = {
         ['SET_EMPLOYEES_WITH_RATING'](state, employees){
             state.employees.withRating = employees
             console.log(state.employees.withRating)
-        }
+        },
+        ['SET_SECTION_TITLE'](state, title){
+            state.section.title = title;
+        },
     },
     actions: {
         // eslint-disable-next-line no-unused-vars

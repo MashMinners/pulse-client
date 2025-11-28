@@ -9,8 +9,18 @@ const routes = [
       layout: 'Dashboard'
     },
     component: function () {
-      return import('../views/DashboardMainPageView')
+      return import('../views/Dashboard/DashboardMainPageView.vue')
     }
+  },
+  {
+    path: '/dashboard/reviews',
+    name: 'DashboardReviews',
+    meta: {
+      layout: 'Dashboard'
+    },
+    component: function () {
+      return import('../views/Dashboard/DashboardReviewsPageView.vue')
+    },
   },
 ]
 

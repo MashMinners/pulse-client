@@ -1,7 +1,6 @@
 <template>
   <div>
-    <p>Hello this is dashboard main View</p>
-    <prime-button label="fill" @click="getEmployees"></prime-button>
+    <prime-button label="Get employees" @click="getEmployees"></prime-button>
     <div>
       <dashboard-main-tabs></dashboard-main-tabs>
     </div>
@@ -10,7 +9,7 @@
 
 <script>
 import {mapActions} from "vuex";
-import DashboardMainTabs from "@/components/Dashboard/Main/DashboardMainTabs";
+import DashboardMainTabs from "@/components/Dashboard/Main/DashboardMainTabs.vue";
 
 export default {
   name: "DashboardMainPageView",
