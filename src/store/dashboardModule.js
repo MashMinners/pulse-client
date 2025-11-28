@@ -54,16 +54,19 @@ export const dashboardModule = {
             let employees = [
                 {
                     employeeFullName : "Alexander Kronos",
+                    employeePhoto: "Shilova.png",
                     employeePositiveRating: 3,
                     employeeNegativeRating: 1
                 },
                 {
                     employeeFullName : "Obivan Kanabis",
+                    employeePhoto: "Kulagina.png",
                     employeePositiveRating: 5,
                     employeeNegativeRating: 2
                 },
                 {
                     employeeFullName : "Виктор Ющинка",
+                    employeePhoto: "Kulagina.png",
                     employeePositiveRating: 2,
                     employeeNegativeRating: 1
                 }

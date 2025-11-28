@@ -10,6 +10,11 @@
                         paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
                         :rowsPerPageOptions="[10,20,50]"
                         currentPageReportTemplate="Показано {first} - {last} из {totalRecords}">
+        <prime-column header="" style="width:96px">
+          <template #body="slotProps">
+            <prime-avatar :image="`/avatars/${slotProps.data.employeePhoto}`" style="width: 64px; height: 64px" shape="circle"/>
+          </template>
+        </prime-column>
         <prime-column field="employeeFullName" header="Пациент" :sortable="true"></prime-column>
       </prime-data-table>
     </div>
