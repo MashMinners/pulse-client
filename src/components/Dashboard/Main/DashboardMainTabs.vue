@@ -6,14 +6,17 @@
       </prime-tabList>
       <prime-tab-panels>
         <prime-tab-panel value="0">
-          <div id="employyes-rating-table" class="col-6">
-            <div v-if="getEmployeesWithRating.length !==0">
-              <prime-message severity="success">Рейтинг сотрудников</prime-message>
+          <div class="formgrid grid">
+            <div id="employyes-rating-table" class="col-6">
+              <div v-if="getEmployeesWithRating.length !==0">
+                <prime-message severity="success">Рейтинг сотрудников</prime-message>
+              </div>
+              <dashboard-main-employees-table :records="getEmployeesWithRating"></dashboard-main-employees-table>
             </div>
-            <dashboard-main-employees-table :records="getEmployeesWithRating"></dashboard-main-employees-table>
-          </div>
-          <div id="employees-rating-chart">
-
+            <div id="employees-rating-chart"  class="col-6">
+              <prime-message severity="success">Соотношение всех отзывов: положительные/отрицательные</prime-message>
+              <dashboard-main-employees-chart></dashboard-main-employees-chart>
+            </div>
           </div>
         </prime-tab-panel>
       </prime-tab-panels>
@@ -24,10 +27,11 @@
 <script>
 import {mapGetters} from "vuex";
 import DashboardMainEmployeesTable from "@/components/Dashboard/Main/DashboardMainEmployeesTable";
+import DashboardMainEmployeesChart from "@/components/Dashboard/Main/DashboardMainEmployeesChart.vue";
 
 export default {
   name: "DashboardMainTabs",
-  components: {DashboardMainEmployeesTable},
+  components: {DashboardMainEmployeesChart, DashboardMainEmployeesTable},
   computed: {
     ...mapGetters({
       getEmployeesWithRating: "dashboard/getEmployeesWithRating"
