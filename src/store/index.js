@@ -5,6 +5,6 @@ import {dashboardModule} from "@/store/dashboardModule";
 export default createStore({
   modules: {
     app: appModule,
-    cp: dashboardModule
+    dashboard: dashboardModule
   }
 })

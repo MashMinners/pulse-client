@@ -12,12 +12,12 @@ export const dashboardModule = {
             {
                 label: 'Начало',
                 icon: 'pi pi-fw pi-plus',
-                to: "/cp/start"
+                to: "/dashboard/start"
             },
             {
                 label: 'Пользователи',
                 icon: 'pi pi-fw pi-trash',
-                to: "/cp/users"
+                to: "/dashboard/users"
             }
         ]
 
