@@ -8,11 +8,11 @@
 
 <script>
 import ApplicationLayout from "@/layouts/ApplicationLayout.vue";
-import ControlPanelLayout from "@/layouts/ControlPanelLayout.vue";
+import DashboardLayout from "@/layouts/DashboardLayout.vue";
 import 'primeflex/primeflex.css';
 export default {
   components: {
-    ControlPanelLayout, ApplicationLayout
+    DashboardLayout, ApplicationLayout
   },
   computed: {
     layout () {

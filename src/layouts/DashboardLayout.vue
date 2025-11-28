@@ -1,22 +1,31 @@
 <template>
   <div id="app-header"></div>
-  <div id="app-content"></div>
+  <div id="app-content">
+    <prime-card>
+      <template #title>{{ sectionTitle }}</template>
+      <template #content>
+        <component
+            :is="getComponent"
+        />
+      </template>
+    </prime-card>
+  </div>
   <div id="overlays"></div>
 </template>
 
 <script>
 
 export default {
-  name: "ControlPanelLayout",
-  data() {
-    return {
-      visible: false
-    }
-  },
+  name: "DashboardLayout",
   computed: {
     getComponent(){
       return (this.$route.matched[0].components.default)
     },
+  },
+  data() {
+    return {
+      visible: false
+    }
   }
 }
 </script>
