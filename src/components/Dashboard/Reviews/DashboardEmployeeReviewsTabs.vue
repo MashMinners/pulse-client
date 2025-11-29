@@ -17,7 +17,7 @@
                 :autoResize="true"
                 rows="5"
                 cols="30"
-                :value="textAreaMessage"
+                :value="goodReviewMessage"
                 class="input"
                 placeholder="Оставьте комментарий"
                 fluid
@@ -26,40 +26,62 @@
         </div>
       </prime-tab-panel>
       <prime-tab-panel value="1">
-        111
-        <filter-component-test></filter-component-test>
+        <div class="formgrid grid">
+          <div id="employees-rating-table" class="col-6">
+            <prime-message severity="error">Отрицательные отзывы</prime-message>
+            <dashboard-employee-reviews-table :records="getNegativeReviewsByEmployee"></dashboard-employee-reviews-table>
+          </div>
+          <div id="employees-bad-review-message"  class="col-6">
+            <prime-message severity="error">Текст отзыва</prime-message>
+            <prime-textarea
+                :autoResize="true"
+                rows="5"
+                cols="30"
+                :value="badReviewMessage"
+                class="input"
+                placeholder="Оставьте комментарий"
+                fluid
+            />
+          </div>
+        </div>
       </prime-tab-panel>
     </prime-tab-panels>
   </prime-tabs>
 </template>
 
 <script>
-import FilterComponentTest from "@/components/Dashboard/Reviews/FilterComponentTest.vue";
 import DashboardEmployeeReviewsTable from "@/components/Dashboard/Reviews/DashboardEmployeeReviewsTable.vue";
 import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "DashboardEmployeeReviewsTabs",
-  components: {DashboardEmployeeReviewsTable, FilterComponentTest},
+  components: {DashboardEmployeeReviewsTable},
   computed: {
     ...mapGetters({
-      getPositiveReviewsByEmployee: "dashboard/getPositiveReviewsByEmployee"
+      getPositiveReviewsByEmployee: "dashboard/getPositiveReviewsByEmployee",
+      getNegativeReviewsByEmployee: "dashboard/getNegativeReviewsByEmployee"
     })
   },
   methods:{
     ...mapActions({
-      getPositiveReviewsByEmployeeAction : "dashboard/getPositiveReviewsByEmployeeAction"
+      getPositiveReviewsByEmployeeAction : "dashboard/getPositiveReviewsByEmployeeAction",
+      getNegativeReviewsByEmployeeAction : "dashboard/getNegativeReviewsByEmployeeAction"
     }),
     getPositiveReviews(){
       this.getPositiveReviewsByEmployeeAction(this.$route.params.uuid)
+    },
+    getNegativeReviews(){
+      this.getNegativeReviewsByEmployeeAction(this.$route.params.uuid)
     }
   },
   created() {
     this.getPositiveReviews()
+    this.getNegativeReviews()
   },
   data(){
     return {
-      textAreaMessage: 'There is a message'
+      goodReviewMessage: 'There is a good review',
+      badReviewMessage: 'There is a bad review'
     }
   }
 }
