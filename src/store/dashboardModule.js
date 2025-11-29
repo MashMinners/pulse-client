@@ -22,6 +22,11 @@ export const dashboardModule = {
         ],
         employees: {
             withRating : []
+        },
+        reviews:{
+            positiveByEmployee : [],
+            negativeByEmployee : [],
+            newByAll : []
         }
 
     }),
@@ -35,6 +40,10 @@ export const dashboardModule = {
         getEmployeesWithRating(state){
             return state.employees.withRating;
         },
+        //REVIEWS
+        getPositiveReviewsByEmployee(state){
+            return state.reviews.positiveByEmployee
+        }
     },
     mutations: {
         ['SET_EMPLOYEES_WITH_RATING'](state, employees){
@@ -45,6 +54,11 @@ export const dashboardModule = {
         ['SET_SECTION_TITLE'](state, title){
             state.section.title = title;
         },
+        //REVIEWS
+        ['SET_POSITIVE_REVIEWS_BY_EMPLOYEE'](state, reviews){
+            state.reviews.positiveByEmployee = reviews
+            console.log(reviews)
+        }
     },
     actions: {
         // eslint-disable-next-line no-unused-vars
@@ -72,6 +86,13 @@ export const dashboardModule = {
                 }
             ]
             commit('SET_EMPLOYEES_WITH_RATING', employees)*/
+        },
+
+        // eslint-disable-next-line no-unused-vars
+        async getPositiveReviewsByEmployeeAction({state, commit}, employeeId) {
+            const params = {employeeId: employeeId}
+            const response = await axios.get('http://192.168.0.14/dashboard/reviews/positive?XDEBUG_SESSION_START=PHPSTORM',{params});
+            commit('SET_POSITIVE_REVIEWS_BY_EMPLOYEE', response.data);
         },
     },
     namespaced: true
