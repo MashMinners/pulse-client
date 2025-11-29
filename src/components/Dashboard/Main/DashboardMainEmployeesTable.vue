@@ -1,7 +1,16 @@
 <template>
   <div>
     <div v-if="records.length !==0">
-      <prime-data-table editMode="cell" class="editable-cells-table p-datatable-sm"  :value="records"
+      <prime-data-table editMode="cell" class="editable-cells-table p-datatable-sm"
+                        :value="records"
+
+                        v-model:filters="filters"
+                        stateStorage="session"
+                        stateKey="dt-state-demo-session"
+                        filterDisplay="menu"
+                        dataKey="employeeId"
+                        :globalFilterFields="['employeeFullName']"
+
                         removableSort
                         stripedRows
                         responsiveLayout="scroll"
@@ -14,7 +23,7 @@
             <prime-input-icon>
               <i class="pi pi-search" />
             </prime-input-icon>
-            <prime-input-text placeholder="Фильтр" />
+            <prime-input-text v-model="filters['global'].value" placeholder="Global Search" />
           </prime-icon-field>
         </template>
         <prime-column header="" style="width:96px">
@@ -22,7 +31,11 @@
             <prime-avatar :image="`/avatars/${slotProps.data.employeePhoto}`" style="width: 64px; height: 64px" shape="circle"/>
           </template>
         </prime-column>
-        <prime-column field="employeeFullName" header="Сотрудник" :sortable="true"></prime-column>
+        <prime-column field="employeeFullName" header="Сотрудник" :sortable="true">
+          <template #filter="{ filterModel }">
+            <prime-input-text v-model="filterModel.value" type="text" placeholder="Search by name" />
+          </template>
+        </prime-column>
         <prime-column header="Отзывы">
           <template #body="slotProps">
             <prime-button label="" rounded raised severity="success" class="mx-1" :badge="slotProps.data.employeePositiveRatingCount" @click="goToPositiveReviews(slotProps.data.employeeId)"/>
@@ -44,8 +57,17 @@
 </template>
 
 <script>
+import { FilterMatchMode, FilterOperator } from '@primevue/core/api';
 export default {
   name: "DashboardMainEmployeesTable",
+  data() {
+    return {
+      filters: null
+    };
+  },
+  created() {
+    this.initFilters();
+  },
   props: {
     //records: [] // Объявляем, что ожидаем строку
     records: {
@@ -54,6 +76,12 @@ export default {
     }
   },
   methods:{
+    initFilters() {
+      this.filters = {
+        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        employeeFullName: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] }
+      };
+    },
     goToPositiveReviews(data){
       //Здесь оформить переход на страницу с отзывами по ID сотрудника
       console.log(data)
