@@ -7,11 +7,9 @@
     <prime-tab-panels>
       <prime-tab-panel value="0">
         <div class="formgrid grid">
-          <div id="employyes-rating-table" class="col-6">
-            <!--<div v-if="getEmployeesWithRating.length !==0">-->
+          <div id="employees-rating-table" class="col-6">
               <prime-message severity="success">Положительные отзывы</prime-message>
-            <!--</div>-->
-            <!---<dashboard-main-employees-table :records="getEmployeesWithRating"></dashboard-main-employees-table>-->
+            <dashboard-employee-reviews-table :records="getPositiveReviewsByEmployee"></dashboard-employee-reviews-table>
           </div>
           <div id="employees-good-review-message"  class="col-6">
             <prime-message severity="success">Текст отзыва</prime-message>
@@ -37,10 +35,28 @@
 
 <script>
 import FilterComponentTest from "@/components/Dashboard/Reviews/FilterComponentTest.vue";
+import DashboardEmployeeReviewsTable from "@/components/Dashboard/Reviews/DashboardEmployeeReviewsTable.vue";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "DashboardEmployeeReviewsTabs",
-  components: {FilterComponentTest},
+  components: {DashboardEmployeeReviewsTable, FilterComponentTest},
+  computed: {
+    ...mapGetters({
+      getPositiveReviewsByEmployee: "dashboard/getPositiveReviewsByEmployee"
+    })
+  },
+  methods:{
+    ...mapActions({
+      getPositiveReviewsByEmployeeAction : "dashboard/getPositiveReviewsByEmployeeAction"
+    }),
+    getPositiveReviews(){
+      this.getPositiveReviewsByEmployeeAction(this.$route.params.uuid)
+    }
+  },
+  created() {
+    this.getPositiveReviews()
+  },
   data(){
     return {
       textAreaMessage: 'There is a message'
