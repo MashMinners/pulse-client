@@ -4,29 +4,37 @@
       <prime-data-table editMode="cell" class="editable-cells-table p-datatable-sm"  :value="records"
                         removableSort
                         stripedRows
-
                         responsiveLayout="scroll"
                         :paginator="true" :rows="10"
                         paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
                         :rowsPerPageOptions="[10,20,50]"
                         currentPageReportTemplate="Показано {first} - {last} из {totalRecords}">
+        <template #header>
+          <prime-icon-field>
+            <prime-input-icon>
+              <i class="pi pi-search" />
+            </prime-input-icon>
+            <prime-input-text placeholder="Фильтр" />
+          </prime-icon-field>
+        </template>
         <prime-column header="" style="width:96px">
           <template #body="slotProps">
             <prime-avatar :image="`/avatars/${slotProps.data.employeePhoto}`" style="width: 64px; height: 64px" shape="circle"/>
           </template>
         </prime-column>
         <prime-column field="employeeFullName" header="Сотрудник" :sortable="true"></prime-column>
-        <prime-column header="Положительные" :sortable="true">
+        <prime-column header="Отзывы">
           <template #body="slotProps">
-            <prime-button label="" rounded severity="success" class="mx-1" :badge="slotProps.data.employeePositiveRatingCount" @click="goToPositiveReviews(slotProps.data.employeeId)"/>
+            <prime-button label="" rounded raised severity="success" class="mx-1" :badge="slotProps.data.employeePositiveRatingCount" @click="goToPositiveReviews(slotProps.data.employeeId)"/>
+            <prime-button label="" rounded raised severity="danger" class="mx-1" :badge="slotProps.data.employeeNegativeRatingCount"/>
           </template>
         </prime-column>
-        <prime-column header="Отрицательные">
+        <!--<prime-column header="Отрицательные">
           <template #body="slotProps">
-            <prime-button label="" rounded severity="danger" class="mx-1" :badge="slotProps.data.employeeNegativeRatingCount"/>
+            <prime-button label="" rounded raised severity="danger" class="mx-1" :badge="slotProps.data.employeeNegativeRatingCount"/>
           </template>
-        </prime-column>
-
+        </prime-column>-->
+        <template #empty> No customers found. </template>
       </prime-data-table>
     </div>
     <div v-else>

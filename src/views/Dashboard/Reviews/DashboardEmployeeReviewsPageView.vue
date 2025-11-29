@@ -1,10 +1,15 @@
 <template>
-  <div>Позитивные отзывы касаемые одного сотрудника</div>
+  <div>
+    <dashboard-employee-reviews-tabs></dashboard-employee-reviews-tabs>
+  </div>
 </template>
 
 <script>
+import DashboardEmployeeReviewsTabs from "@/components/Dashboard/Reviews/DashboardEmployeeReviewsTabs.vue";
+
 export default {
-  name: "DashboardPositiveReviewsPageView"
+  name: "DashboardPositiveReviewsPageView",
+  components: {DashboardEmployeeReviewsTabs}
 }
 </script>
 
