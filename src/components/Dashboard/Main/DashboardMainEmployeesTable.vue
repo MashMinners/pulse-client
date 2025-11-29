@@ -3,14 +3,12 @@
     <div v-if="records.length !==0">
       <prime-data-table editMode="cell" class="editable-cells-table p-datatable-sm"
                         :value="records"
-
                         v-model:filters="filters"
                         stateStorage="session"
                         stateKey="dt-state-demo-session"
                         filterDisplay="menu"
                         dataKey="employeeId"
                         :globalFilterFields="['employeeFullName']"
-
                         removableSort
                         stripedRows
                         responsiveLayout="scroll"
@@ -33,7 +31,7 @@
         </prime-column>
         <prime-column field="employeeFullName" header="Сотрудник" :sortable="true">
           <template #filter="{ filterModel }">
-            <prime-input-text v-model="filterModel.value" type="text" placeholder="Search by name" />
+            <prime-input-text v-model="filterModel.value" type="text" placeholder="Поиск по имени" />
           </template>
         </prime-column>
         <prime-column header="Отзывы">
