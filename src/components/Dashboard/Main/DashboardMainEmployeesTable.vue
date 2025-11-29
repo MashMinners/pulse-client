@@ -18,7 +18,7 @@
         <prime-column field="employeeFullName" header="Сотрудник" :sortable="true"></prime-column>
         <prime-column header="Положительные" :sortable="true">
           <template #body="slotProps">
-            <prime-button label="" rounded severity="success" class="mx-1" :badge="slotProps.data.employeePositiveRatingCount"/>
+            <prime-button label="" rounded severity="success" class="mx-1" :badge="slotProps.data.employeePositiveRatingCount" @click="goToPositiveReviews(slotProps.data.employeeId)"/>
           </template>
         </prime-column>
         <prime-column header="Отрицательные">
@@ -43,6 +43,12 @@ export default {
     records: {
       type: Array,
       default: () => [] // It's best practice to use a factory function for objects/arrays in default values
+    }
+  },
+  methods:{
+    goToPositiveReviews(data){
+      //Здесь оформить переход на страницу с отзывами по ID сотрудника
+      console.log(data)
     }
   }
 }

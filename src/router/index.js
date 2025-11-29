@@ -9,7 +9,7 @@ const routes = [
       layout: 'Dashboard'
     },
     component: function () {
-      return import('../views/Dashboard/DashboardMainPageView.vue')
+      return import('../views/Dashboard/Main/DashboardMainPageView.vue')
     }
   },
   {
@@ -19,7 +19,17 @@ const routes = [
       layout: 'Dashboard'
     },
     component: function () {
-      return import('../views/Dashboard/DashboardReviewsPageView.vue')
+      return import('../views/Dashboard/Reviews/DashboardReviewsPageView.vue')
+    },
+  },
+  {
+    path: '/dashboard/reviews/:uuid',
+    name: 'DashboardEmployeeReviews',
+    meta: {
+      layout: 'Dashboard'
+    },
+    component: function () {
+      return import('../views/Dashboard/Reviews/DashboardEmployeeReviewsPageView.vue')
     },
   },
 ]
