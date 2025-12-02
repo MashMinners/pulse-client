@@ -1,7 +1,12 @@
 <template>
   <div v-if="records.length !==0">
     <prime-data-table editMode="cell" class="editable-cells-table p-datatable-sm"
+                      v-model:selection="selectedRecords"
                       :value="records"
+                      selectionMode="single"
+                      :metaKeySelection="false"
+                      @rowSelect="onRowSelect"
+                      dataKey="id"
                       removableSort
                       stripedRows
                       responsiveLayout="scroll"
@@ -33,7 +38,19 @@ export default {
       type: Array,
       default: () => [] // It's best practice to use a factory function for objects/arrays in default values
     }
-  }
+  },
+  methods: {
+    onRowSelect(event) {
+      //this.$toast.add({ severity: 'info', summary: 'Product Selected', detail: 'Name: ' + event.data.name, life: 3000 });
+      console.log(event.data.reviews_review_text)
+    }
+  },
+  data() {
+    return {
+      selectedRecords: null,
+      metaKey: true
+    };
+  },
 }
 </script>
 

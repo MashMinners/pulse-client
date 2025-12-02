@@ -8,7 +8,7 @@
       <prime-tab-panel value="0">
         <div class="formgrid grid">
           <div id="employees-rating-table" class="col-6">
-              <prime-message severity="success">Положительные отзывы</prime-message>
+            <prime-message severity="success">Положительные отзывы</prime-message>
             <dashboard-employee-reviews-table :records="getPositiveReviewsByEmployee"></dashboard-employee-reviews-table>
           </div>
           <div id="employees-good-review-message"  class="col-6">
@@ -76,7 +76,7 @@ export default {
   },
   created() {
     this.getPositiveReviews()
-    this.getNegativeReviews()
+    //this.getNegativeReviews()
   },
   data(){
     return {
