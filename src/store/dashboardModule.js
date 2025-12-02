@@ -45,7 +45,7 @@ export const dashboardModule = {
             return state.reviews.positiveByEmployee
         },
         getNegativeReviewsByEmployee(state){
-            return state.reviews.positiveByEmployee
+            return state.reviews.negativeByEmployee
         }
     },
     mutations: {
