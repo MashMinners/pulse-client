@@ -28,6 +28,7 @@ import Avatar from "primevue/avatar";
 import Chart from 'primevue/chart';
 import ('primeicons/primeicons.css')
 import ('primeflex/primeflex.css');
+
 export default {
     modules: [
         InputText, Button, Fieldset, ProgressBar, Dialog,  Message, Textarea, Image, Card, Knob, Panel, Toolbar,
