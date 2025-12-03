@@ -36,8 +36,8 @@
         </prime-column>
         <prime-column header="Отзывы">
           <template #body="slotProps">
-            <prime-button label="" rounded raised severity="success" class="mx-1" :badge="slotProps.data.employeePositiveRatingCount" @click="goToPositiveReviews(slotProps.data.employeeId)"/>
-            <prime-button label="" rounded raised severity="danger" class="mx-1" :badge="slotProps.data.employeeNegativeRatingCount"/>
+            <prime-button label="" rounded raised severity="success" class="mx-1" :badge="slotProps.data.employeePositiveRatingCount" @click="goToEmployeeReviews(slotProps.data.employeeId)"/>
+            <prime-button label="" rounded raised severity="danger" class="mx-1" :badge="slotProps.data.employeeNegativeRatingCount" @click="goToEmployeeReviews(slotProps.data.employeeId)"/>
           </template>
         </prime-column>
         <!--<prime-column header="Отрицательные">
@@ -80,10 +80,11 @@ export default {
         employeeFullName: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] }
       };
     },
-    goToPositiveReviews(data){
+    goToEmployeeReviews(id){
       //Здесь оформить переход на страницу с отзывами по ID сотрудника
-      console.log(data)
+      this.$router.push('/dashboard/reviews/' + id);
     }
+
   }
 }
 </script>
