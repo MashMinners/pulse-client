@@ -43,7 +43,7 @@ const routes = [
       layout: 'Application'
     },
     component: function () {
-     //return import('../views/ReviewCollector/FinishPageView.vue')
+     return import('../views/ReviewCollector/FinishPageView.vue')
     },
   },
   {
