@@ -11,8 +11,8 @@
       </template>
       <template #footer>
         <div class="flex-auto mt-1">
-          <prime-button class="mr-4" label="Поблагодарить" size="large" @click = leavePositiveReview></prime-button>
-          <prime-button label="Пожаловаться" size="large" severity="danger" @click = leaveNegativeReview></prime-button>
+          <prime-button class="mr-4" label="Поблагодарить" size="large" @click = sendPositiveReview></prime-button>
+          <prime-button label="Пожаловаться" size="large" severity="danger" @click = sendNegativeReview></prime-button>
         </div>
       </template>
     </prime-card>
@@ -33,10 +33,10 @@ export default {
     ...mapActions({
       getEmployeeAction: "app/getEmployeeAction"
     }),
-    leavePositiveReview(){
+    sendPositiveReview(){
       this.$router.push('/app/review/positive/' + this.$route.params.uuid);
     },
-    leaveNegativeReview(){
+    sendNegativeReview(){
       this.$router.push('/app/review/negative/' + this.$route.params.uuid);
     },
   },

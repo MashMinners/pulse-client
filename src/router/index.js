@@ -17,17 +17,17 @@ const routes = [
     },
   },
   {
-    path: '/app/review/positive',
+    path: '/app/review/positive/:uuid',
     name: 'positiveReview',
     meta: {
       layout: 'Application'
     },
     component: function () {
-      //return import('../views/ReviewCollector/GoodPageView.vue')
+      return import('../views/ReviewCollector/PositiveReviewPageView.vue')
     },
   },
   {
-    path: '/app/review/negative',
+    path: '/app/review/negative/:uuid',
     name: 'negativeReview',
     meta: {
       layout: 'Application'

@@ -1,4 +1,4 @@
-import connections from "@/configs/connections";
+//import connections from "@/configs/connections";
 import axios from "axios";
 
 export const appModule = {
@@ -51,17 +51,20 @@ export const appModule = {
             commit('SET_EMPLOYEE', response.data);
         },
 
-        async sendGoodReview({state, commit}, data) {
+        async sendPositiveReviewAction({state, commit}, review) {
             // eslint-disable-next-line no-unused-vars
-            const response = await axios.post(connections.api.production ? connections.api.production + 'app/review/add/positive/' : connections.api.dev + 'app/review/add/positive/', {
-                doctorID: state.doctorID,
-                pacient: data.pacient,
-                telephone: data.telephone,
-                message: data.message,
-                status: data.reviewStatus
-
+            //const response = await axios.post(connections.api.production ? connections.api.production + 'app/review/add/positive/' : connections.api.dev + 'app/review/add/positive?XDEBUG_SESSION_START=PHPSTORM', {
+            // eslint-disable-next-line no-unused-vars
+            const response = await axios.post('http://192.168.0.14/app/review/add/positive?XDEBUG_SESSION_START=PHPSTORM', {
+                reviewId: null,
+                reviewEmployeeId: state.employee.employeeId,
+                reviewStatus: review.reviewStatus,
+                reviewText: review.message,
+                reviewDate: null,
+                reviewPacient: review.pacient,
+                reviewTelephone: review.telephone
             });
-            commit('FINISH', {pacient: data.pacient, reviewStatus: data.reviewStatus})
+            commit('FINISH', {pacient: review.pacient, reviewStatus: review.reviewStatus})
         },
 
         async sendBadReview({state, commit}, data) {

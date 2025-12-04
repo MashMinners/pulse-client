@@ -26,6 +26,8 @@ import InputIcon from "primevue/inputicon";
 import OverlayBadge from "primevue/overlaybadge";
 import Avatar from "primevue/avatar";
 import Chart from 'primevue/chart';
+import InputMask from "primevue/inputmask";
+import Divider from "primevue/divider";
 import ('primeicons/primeicons.css')
 import ('primeflex/primeflex.css');
 
@@ -33,7 +35,7 @@ export default {
     modules: [
         InputText, Button, Fieldset, ProgressBar, Dialog,  Message, Textarea, Image, Card, Knob, Panel, Toolbar,
         Menu, DataTable, Column, Tabs, TabList, TabPanel, Tab, TabPanels, Drawer, IconField, InputIcon, OverlayBadge,
-        Avatar, Chart
+        Avatar, Chart, InputMask, Divider
     ],
     directives: [
         {name: "tooltip", subject: Tooltip}
