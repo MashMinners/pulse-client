@@ -1,37 +1,92 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
-  //DASHBOARD
+    //APPLICATION
   {
-    path: '/dashboard/main',
-    name: 'DashboardMain',
-    meta: {
-      layout: 'Dashboard'
-    },
-    component: function () {
-      return import('../views/Dashboard/Main/DashboardMainPageView.vue')
-    }
+    path: '/',
+    redirect: '/info'
   },
   {
-    path: '/dashboard/reviews',
-    name: 'DashboardReviews',
+    path: '/app/start/:uuid',
+    name: 'start',
     meta: {
-      layout: 'Dashboard'
+      layout: 'Application'
     },
     component: function () {
-      return import('../views/Dashboard/Reviews/DashboardReviewsPageView.vue')
+      return import('../views/ReviewCollector/StartPageView.vue')
     },
   },
   {
-    path: '/dashboard/reviews/:uuid',
-    name: 'DashboardEmployeeReviews',
+    path: '/app/review/positive',
+    name: 'positiveReview',
     meta: {
-      layout: 'Dashboard'
+      layout: 'Application'
     },
     component: function () {
-      return import('../views/Dashboard/Reviews/DashboardEmployeeReviewsPageView.vue')
+      //return import('../views/ReviewCollector/GoodPageView.vue')
     },
   },
+  {
+    path: '/app/review/negative',
+    name: 'negativeReview',
+    meta: {
+      layout: 'Application'
+    },
+    component: function () {
+      return import('../views/ReviewCollector/BadPageView.vue')
+    },
+  },
+  {
+    path: '/finish',
+    name: 'finish',
+    meta: {
+      layout: 'Application'
+    },
+    component: function () {
+     //return import('../views/ReviewCollector/FinishPageView.vue')
+    },
+  },
+  {
+    path: '/info',
+    name: 'information',
+    meta: {
+      layout: 'Application'
+    },
+    component: function () {
+      //return import('../views/ReviewCollector/InformationPageView.vue')
+    },
+  },
+    //DASHBOARD
+    {
+      path: '/dashboard/main',
+      name: 'DashboardMain',
+      meta: {
+        layout: 'Dashboard'
+      },
+      component: function () {
+        return import('../views/Dashboard/Main/DashboardMainPageView.vue')
+      }
+    },
+    {
+      path: '/dashboard/reviews',
+      name: 'DashboardReviews',
+      meta: {
+        layout: 'Dashboard'
+      },
+      component: function () {
+        return import('../views/Dashboard/Reviews/DashboardReviewsPageView.vue')
+      },
+    },
+    {
+      path: '/dashboard/reviews/:uuid',
+      name: 'DashboardEmployeeReviews',
+      meta: {
+        layout: 'Dashboard'
+      },
+      component: function () {
+        return import('../views/Dashboard/Reviews/DashboardEmployeeReviewsPageView.vue')
+      },
+    },
 ]
 
 const router = createRouter({
