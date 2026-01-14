@@ -1,6 +1,5 @@
 <template>
   <div id="authentication">
-    123
     <section id="main-section">
       <component
           :is="getComponent"
