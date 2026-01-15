@@ -35,7 +35,7 @@
 import {mapActions, mapGetters} from "vuex";
 
 export default {
-  name: "BadPageView",
+  name: "NegativeReviewPageView",
   data() {
     return {
       pacient: null,

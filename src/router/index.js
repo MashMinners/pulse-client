@@ -36,7 +36,7 @@ const routes = [
         layout: 'Application'
       },
       component: function () {
-        return import('../views/ReviewCollector/BadPageView.vue')
+        return import('../views/ReviewCollector/NegativeReviewPageView.vue')
       },
     },
     {
