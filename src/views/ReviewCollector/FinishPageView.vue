@@ -10,9 +10,6 @@
       в ближайшее время
     </prime-message>
   </div>
-  <div v-else>
-    !
-  </div>
   <div class="flex-auto mt-1">
     <prime-knob class="centered-text mt-1 mb-1" v-model="timerCount" :max="60"/>
   </div>
@@ -41,7 +38,7 @@ export default {
         this.timerCount = 60;
       }, 500);
       //this.clearModel();
-      this.$router.push('/');
+      this.$router.push('/info');
     },
     playTimer() {
       this.timerEnabled = true;

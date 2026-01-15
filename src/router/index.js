@@ -56,7 +56,7 @@ const routes = [
         layout: 'Application'
       },
       component: function () {
-        //return import('../views/ReviewCollector/InformationPageView.vue')
+        return import('../views/ReviewCollector/InformationPageView.vue')
       },
     },
     //DASHBOARD
