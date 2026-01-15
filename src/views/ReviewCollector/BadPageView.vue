@@ -24,7 +24,7 @@
         <prime-textarea id="review-area" v-model="message" autoResize rows="5" cols="30" />
       </div>
       <div class="flex-auto mb-2">
-        <prime-button label="Отправить" severity="danger" @click="finishBad"></prime-button>
+        <prime-button label="Отправить" severity="danger" @click="finishNegative"></prime-button>
       </div>
       <prime-divider></prime-divider>
     </prime-panel>
@@ -45,26 +45,27 @@ export default {
   },
   methods:{
     ...mapActions({
-      sendBadReview: "app/sendBadReview"
+      sendNegativeReviewAction: "app/sendNegativeReviewAction"
     }),
-    finishBad(){
-      this.sendBadReview({
+    finishNegative(){
+      this.sendNegativeReviewAction({
         pacient: this.pacient,
         telephone: this.telephone,
-        message: this.message
+        message: this.message,
+        reviewStatus: '0'
       });
       this.$router.push({name: 'finish'});
     },
     checkDoctorId(){
       //Если случайно обновил страницу, то перекинет (сейчас на финиш, позже на страницу ошибки с педложением отскнаировать снова)
-      if(this.getDoctorId === null){
+      if(this.getEmployeeId === null){
         this.$router.push({name: 'finish'});
       }
     },
   },
   computed: {
     ...mapGetters({
-      getDoctorId: "app/getDoctorId"
+      getEmployeeId: "app/getEmployeeId"
     })
   },
   mounted(){

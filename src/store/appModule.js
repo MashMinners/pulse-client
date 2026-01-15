@@ -25,6 +25,9 @@ export const appModule = {
         },
         getPacient(state){
             return state.pacient
+        },
+        getEmployeeId(state){
+            return state.employee.employeeId
         }
     },
     mutations: {
@@ -67,7 +70,7 @@ export const appModule = {
             commit('FINISH', {pacient: review.pacient, reviewStatus: review.reviewStatus})
         },
 
-        async sendBadReview({state, commit}, data) {
+        async sendNegativeReviewAction({state, commit}, data) {
             // eslint-disable-next-line no-unused-vars
             const response = await axios.post('http://192.168.0.14/review/bad?XDEBUG_SESSION_START=PHPSTORM', {
                 doctorID: state.doctorID,
