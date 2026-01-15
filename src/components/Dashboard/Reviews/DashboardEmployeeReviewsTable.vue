@@ -23,6 +23,16 @@
         </prime-column>
         <prime-column field="employees_employee_surname" header="Сотрудник" :sortable="true"></prime-column>
         <prime-column field="reviews_review_date" header="Дата/время" :sortable="true"></prime-column>
+        <prime-column header="Пациент">
+          <template #body="slotProps">
+            {{getPacientName(slotProps.data.reviews_review_pacient)}}
+          </template>
+        </prime-column>
+        <prime-column header="Контакт для связи">
+          <template #body="slotProps">
+            {{getContact(slotProps.data.reviews_review_pacient_telephone)}}
+          </template>
+        </prime-column>
         <template #empty> No customers found. </template>
       </prime-data-table>
     </div>
@@ -60,6 +70,12 @@ export default {
   methods: {
     onRowSelect(event) {
       this.reviewMessage = event.data.reviews_review_text
+    },
+    getPacientName(pacient){
+      return pacient ?? 'Аноним'
+    },
+    getContact(telephone){
+      return telephone ?? 'Контакт для связи не оставлен'
     }
   },
   data() {

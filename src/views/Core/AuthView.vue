@@ -20,7 +20,7 @@
               <input type="password" placeholder="Пароль" required>
             </p>
             <p>
-              <input class="btn" value="Вход" />
+              <button class="btn" @click="doLogin">Вход</button>
             </p>
           </form>
         </div>
@@ -30,8 +30,18 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
-  name: "AuthView"
+  name: "AuthView",
+  methods: {
+    ...mapActions({
+
+    }),
+    doLogin(){
+
+    }
+  }
 }
 </script>
 
@@ -88,23 +98,23 @@ p {
 }
 
 .btn {
-  display: inline-block;
-  padding: 7px 20px;
-  font-size: 16px;
-  letter-spacing: 1px;
-  text-decoration: none;
-  border-radius: 5px;
-  color: #ffffff;
-  outline: none;
-  border: 1px solid #ffffff;
-  transition: .3s;
-  -webkit-transition: .3s;
-  text-align: center;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #e0102f;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
 }
 
 .btn:hover {
-  color: #e0102f;
-  background: #ffffff;
+  color: #FFFFFF;
+  background: #f8062b;
 }
 
 .col-left,

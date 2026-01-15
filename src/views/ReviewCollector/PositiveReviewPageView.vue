@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "PositiveReviewPageView",
@@ -55,6 +55,20 @@ export default {
       });
       this.$router.push({name: 'finish'});
     },
+    checkDoctorId(){
+      //Если случайно обновил страницу, то перекинет (сейчас на финиш, позже на страницу ошибки с педложением отскнаировать снова)
+      if(this.getEmployeeId === null){
+        this.$router.push({name: 'finish'});
+      }
+    },
+  },
+  computed: {
+    ...mapGetters({
+      getEmployeeId: "app/getEmployeeId"
+    })
+  },
+  mounted(){
+    this.checkDoctorId();
   }
 }
 </script>
