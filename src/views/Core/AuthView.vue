@@ -12,17 +12,17 @@
       <div class="col-right">
         <div class="login-form">
           <h2>Аутентификация</h2>
-          <form>
+          <!--<form>-->
             <p>
-              <input type="text" placeholder="Пользователь" required>
+              <prime-input-text v-model="userName" placeholder="Пользователь"></prime-input-text>
             </p>
             <p>
-              <input type="password" placeholder="Пароль" required>
+              <prime-input-text v-model="userPassword" placeholder="Пароль"></prime-input-text>
             </p>
             <p>
               <button class="btn" @click="doLogin">Вход</button>
             </p>
-          </form>
+          <!--</form>-->
         </div>
       </div>
     </div>
@@ -34,12 +34,22 @@ import {mapActions} from "vuex";
 
 export default {
   name: "AuthView",
+  data() {
+    return {
+      userName: null,
+      userPassword: null
+    }
+  },
   methods: {
     ...mapActions({
-
+      doLoginAction: "core/doLoginAction"
     }),
     doLogin(){
-
+      this.doLoginAction(
+          {
+            userName: this.userName,
+            userPassword: this.userPassword
+          })
     }
   }
 }
