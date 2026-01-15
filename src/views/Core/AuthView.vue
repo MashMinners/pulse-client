@@ -44,12 +44,15 @@ export default {
     ...mapActions({
       doLoginAction: "core/doLoginAction"
     }),
-    doLogin(){
-      this.doLoginAction(
+   async doLogin(){
+      const response = await this.doLoginAction(
           {
             userName: this.userName,
             userPassword: this.userPassword
           })
+     if (response){
+       this.$router.push({name: 'DashboardMain'});
+     }
     }
   }
 }
