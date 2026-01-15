@@ -4,7 +4,7 @@
       {{getPacient}} ваш отзыв принят. Спасибо!
     </prime-message>
   </div>
-  <div v-else-if="getReviewStatus === 'bad'">
+  <div v-else-if="getReviewStatus === '0'">
     <prime-message severity="error">
       <b><i>{{getPacient}}</i></b> ваш отзыв принят. Спасибо! Наш администратор позвонит вам с номера телефона: <b>8908-22-33-44-1</b>
       в ближайшее время
