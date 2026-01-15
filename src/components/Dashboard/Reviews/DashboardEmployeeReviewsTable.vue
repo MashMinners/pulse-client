@@ -12,16 +12,20 @@
                         removableSort
                         stripedRows
                         responsiveLayout="scroll"
-                        :paginator="true" :rows="10"
+                        :paginator="true" :rows="5"
                         paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
-                        :rowsPerPageOptions="[10,20,50]"
+                        :rowsPerPageOptions="[5, 10,20,50]"
                         currentPageReportTemplate="Показано {first} - {last} из {totalRecords}">
         <prime-column header="" style="width:96px">
           <template #body="slotProps">
             <prime-avatar :image="`/avatars/${slotProps.data.employees_employee_photo}`" style="width: 64px; height: 64px" shape="circle"/>
           </template>
         </prime-column>
-        <prime-column field="employees_employee_surname" header="Сотрудник" :sortable="true"></prime-column>
+        <prime-column header="Сотрудник">
+          <template #body="slotProps">
+            {{getEmployeeFullName(slotProps.data)}}
+          </template>
+        </prime-column>
         <prime-column field="reviews_review_date" header="Дата/время" :sortable="true"></prime-column>
         <prime-column header="Пациент">
           <template #body="slotProps">
@@ -76,6 +80,9 @@ export default {
     },
     getContact(telephone){
       return telephone ?? 'Контакт для связи не оставлен'
+    },
+    getEmployeeFullName(data){
+      return data.employees_employee_surname + ' ' + data.employees_employee_first_name + ' ' + data.employees_employee_second_name;
     }
   },
   data() {
