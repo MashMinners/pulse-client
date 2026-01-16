@@ -70,7 +70,7 @@ export const dashboardModule = {
     actions: {
         // eslint-disable-next-line no-unused-vars
         async getEmployeesWithRatingAction({state, commit}) {
-            const response = await axios.get('https://api.pulse.crb500.ru/dashboard/main/employees');
+            const response = await axios.get('http://192.168.0.14/dashboard/main/employees?XDEBUG_SESSION_START=PHPSTORM');
             commit('SET_EMPLOYEES_WITH_RATING', response.data);
             /*let employees = [
                 {
@@ -98,13 +98,13 @@ export const dashboardModule = {
         // eslint-disable-next-line no-unused-vars
         async getPositiveReviewsByEmployeeAction({state, commit}, employeeId) {
             const params = {employeeId: employeeId}
-            const response = await axios.get('https://api.pulse.crb500.ru/dashboard/reviews/positive',{params});
+            const response = await axios.get('http://192.168.0.14/dashboard/reviews/positive?XDEBUG_SESSION_START=PHPSTORM',{params});
             commit('SET_POSITIVE_REVIEWS_BY_EMPLOYEE', response.data);
         },
         // eslint-disable-next-line no-unused-vars
         async getNegativeReviewsByEmployeeAction({state, commit}, employeeId) {
             const params = {employeeId: employeeId}
-            const response = await axios.get('https://api.pulse.crb500.ru/dashboard/reviews/negative',{params});
+            const response = await axios.get('http://192.168.0.14/dashboard/reviews/negative?XDEBUG_SESSION_START=PHPSTORM',{params});
             commit('SET_NEGATIVE_REVIEWS_BY_EMPLOYEE', response.data);
         },
     },
