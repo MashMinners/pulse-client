@@ -50,7 +50,7 @@ export const appModule = {
         // eslint-disable-next-line no-unused-vars
         async getEmployeeAction({state, commit}, employeeId){
             const params = {employeeId: employeeId}
-            const response = await axios.get('http://192.168.0.14/app/employee/get?XDEBUG_SESSION_START=PHPSTORM',{params});
+            const response = await axios.get('https://api.pulse.crb500.ru/app/employee/get',{params});
             commit('SET_EMPLOYEE', response.data);
         },
 
@@ -58,7 +58,7 @@ export const appModule = {
             // eslint-disable-next-line no-unused-vars
             //const response = await axios.post(connections.api.production ? connections.api.production + 'app/review/add/positive/' : connections.api.dev + 'app/review/add/positive?XDEBUG_SESSION_START=PHPSTORM', {
             // eslint-disable-next-line no-unused-vars
-            const response = await axios.post('http://192.168.0.14/app/review/add?XDEBUG_SESSION_START=PHPSTORM', {
+            const response = await axios.post('https://api.pulse.crb500.ru/app/review/add', {
                 reviewId: null,
                 reviewEmployeeId: state.employee.employeeId,
                 reviewStatus: review.reviewStatus,
@@ -72,7 +72,7 @@ export const appModule = {
 
         async sendNegativeReviewAction({state, commit}, review) {
             // eslint-disable-next-line no-unused-vars
-            const response = await axios.post('http://192.168.0.14/app/review/add?XDEBUG_SESSION_START=PHPSTORM', {
+            const response = await axios.post('https://api.pulse.crb500.ru/app/review/add', {
                 reviewId: null,
                 reviewEmployeeId: state.employee.employeeId,
                 reviewStatus: review.reviewStatus,

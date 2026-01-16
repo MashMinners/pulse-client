@@ -11,7 +11,7 @@
       </template>
       <template #footer>
         <div class="flex-auto mt-1">
-          <prime-button class="mr-4" label="Поблагодарить" size="large" @click = sendPositiveReview></prime-button>
+          <prime-button class="mr-1" label="Поблагодарить" size="large" @click = sendPositiveReview></prime-button>
           <prime-button label="Пожаловаться" size="large" severity="danger" @click = sendNegativeReview></prime-button>
         </div>
       </template>
