@@ -16,7 +16,7 @@
           </prime-button>
         </div>
         <div class="flex items-center gap-2">
-          <prime-avatar image="/avatars/Shilova.png" style="width: 48px; height: 48px" shape="circle"/>
+          <prime-avatar image="/avatars/shilova.png" style="width: 48px; height: 48px" shape="circle"/>
           <prime-button label="Выход" icon="pi pi-sign-out" class="flex-auto" severity="danger" text></prime-button>
         </div>
       </template>
@@ -36,7 +36,7 @@
     <prime-drawer v-model:visible="visible" header="Меню">
       <template #header>
         <div class="flex items-center gap-2">
-          <prime-avatar image="/avatars/Shilova.png" shape="circle" size="xlarge"/>
+          <prime-avatar image="/avatars/shilova.png" shape="circle" size="xlarge"/>
           <p class="font-bold">Администратор</p>
         </div>
       </template>
