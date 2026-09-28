@@ -30,6 +30,7 @@ export const coreModule = {
             commit('FINISH', {access: accessToken, refresh: refreshToken})
             console.log(response)
             return response;
+
         }
     },
     namespaced: true
