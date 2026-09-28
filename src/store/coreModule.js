@@ -24,13 +24,12 @@ export const coreModule = {
     actions: {
         // eslint-disable-next-line no-unused-vars
         async doLoginAction({state, commit}, data){
-            const response = await axios.post(`${connections.baseURL}/auth/doAuth`, data)
+            const response = await axios.post(`${connections.baseURL}/auth/doAuth?XDEBUG_SESSION_START=PHPSTORM`, data)
             const accessToken = response.data.AccessToken.split('.');
             const refreshToken = response.data.RefreshToken;
             commit('FINISH', {access: accessToken, refresh: refreshToken})
             console.log(response)
             return response;
-
         }
     },
     namespaced: true
