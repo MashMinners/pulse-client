@@ -50,7 +50,8 @@ export default {
             userName: this.userName,
             userPassword: this.userPassword
           })
-     if (response){
+     if (response.data.AccessToken){
+     //Оно будет работать только когда установлена кука JWT, пока еще не понял почему, но делал сам значит пойму
        this.$router.push({name: 'DashboardMain'});
      }
     }
