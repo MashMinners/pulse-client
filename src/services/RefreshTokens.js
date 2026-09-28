@@ -24,7 +24,7 @@ const fillStorage = (payload, accessToken, refreshToken) => {
 
 export const doRefresh = async (oldRefreshToken) => {
   console.log('Start requesting new pare of tokens')
-  const result = await axios.get(`${connections.api.dev}/api/v1/auth/doRefresh`, { params: { RefreshToken: oldRefreshToken } })
+  const result = await axios.get(`${connections.baseURL}/api/v1/auth/doRefresh`, { params: { RefreshToken: oldRefreshToken } })
   console.log('Finish requesting new pare of tokens')
   const newAccessToken = result.data.AccessToken
   const newRefreshToken = result.data.RefreshToken

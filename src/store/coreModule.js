@@ -1,3 +1,4 @@
+import connections from "@/configs/connections";
 import axios from "axios";
 
 export const coreModule = {
@@ -23,7 +24,7 @@ export const coreModule = {
     actions: {
         // eslint-disable-next-line no-unused-vars
         async doLoginAction({state, commit}, data){
-            const response = await axios.post('http://192.168.0.14/auth/doAuth?XDEBUG_SESSION_START=PHPSTORM', data)
+            const response = await axios.post(`${connections.baseURL}/auth/doAuth`, data)
             const accessToken = response.data.AccessToken.split('.');
             const refreshToken = response.data.RefreshToken;
             commit('FINISH', {access: accessToken, refresh: refreshToken})
