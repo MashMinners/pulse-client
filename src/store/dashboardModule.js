@@ -70,7 +70,7 @@ export const dashboardModule = {
     actions: {
         // eslint-disable-next-line no-unused-vars
         async getEmployeesWithRatingAction({state, commit}) {
-            const response = await axios.get(`${connections.baseURL}/dashboard/main/employees`);
+            const response = await axios.get(`${connections.baseURL}/dashboard/main/employees?XDEBUG_SESSION_START=PHPSTORM`);
             commit('SET_EMPLOYEES_WITH_RATING', response.data);
         },
 

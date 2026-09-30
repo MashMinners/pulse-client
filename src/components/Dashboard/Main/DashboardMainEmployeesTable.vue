@@ -21,7 +21,7 @@
             <prime-input-icon>
               <i class="pi pi-search" />
             </prime-input-icon>
-            <prime-input-text v-model="filters['global'].value" placeholder="Global Search" />
+            <prime-input-text v-model="filters['global'].value" placeholder="Поиск по сотруднику" />
           </prime-icon-field>
         </template>
         <prime-column header="" style="width:96px">
