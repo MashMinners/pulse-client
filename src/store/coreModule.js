@@ -10,13 +10,12 @@ export const coreModule = {
     },
     mutations: {
         ['FINISH'](state, tokens){
-            const accessToken = tokens.access.split('.');
             // eslint-disable-next-line no-unused-vars
-            const header = accessToken[0];
+            const header = tokens.access[0];
             // eslint-disable-next-line no-unused-vars
-            const payload = accessToken[1];
+            const payload = tokens.access[1];
             // eslint-disable-next-line no-unused-vars
-            const signa = accessToken[2];
+            const signa = tokens.access[2];
             localStorage.setItem('JWT', tokens.access);
             localStorage.setItem('Refresh', tokens.refresh);
         }
@@ -28,7 +27,6 @@ export const coreModule = {
             const accessToken = response.data.AccessToken.split('.');
             const refreshToken = response.data.RefreshToken;
             commit('FINISH', {access: accessToken, refresh: refreshToken})
-            console.log(response)
             return response;
         }
     },
