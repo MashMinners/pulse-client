@@ -10,12 +10,14 @@ export const coreModule = {
     },
     mutations: {
         ['FINISH'](state, tokens){
+            const accessToken = tokens.access.split('.');
             // eslint-disable-next-line no-unused-vars
-            const header = tokens.access[0];
+            const header = accessToken[0];
             // eslint-disable-next-line no-unused-vars
-            const payload = tokens.access[1];
+            const payload = accessToken[1];
             // eslint-disable-next-line no-unused-vars
-            const signa = tokens.access[2];
+            const signa = accessToken[2];
+            console.log(tokens)
             localStorage.setItem('JWT', tokens.access);
             localStorage.setItem('Refresh', tokens.refresh);
         }
@@ -24,9 +26,12 @@ export const coreModule = {
         // eslint-disable-next-line no-unused-vars
         async doLoginAction({state, commit}, data){
             const response = await axios.post(`${connections.baseURL}/auth/doAuth?XDEBUG_SESSION_START=PHPSTORM`, data)
-            const accessToken = response.data.AccessToken.split('.');
-            const refreshToken = response.data.RefreshToken;
-            commit('FINISH', {access: accessToken, refresh: refreshToken})
+            //Здесь логично проверять статус
+            if (response.status === 200){
+                const accessToken = response.data.AccessToken;
+                const refreshToken = response.data.RefreshToken;
+                commit('FINISH', {access: accessToken, refresh: refreshToken})
+            }
             return response;
         }
     },
