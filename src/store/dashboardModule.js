@@ -1,5 +1,6 @@
 import connections from "@/configs/connections";
 import axios from "axios";
+import router from "@/router";
 
 export const dashboardModule = {
     state:() => ({
@@ -70,19 +71,38 @@ export const dashboardModule = {
     actions: {
         // eslint-disable-next-line no-unused-vars
         async getEmployeesWithRatingAction({state, commit}) {
-            const token = localStorage.getItem('JWT');
-            console.log(token)
-            const response = await axios.get(`${connections.baseURL}/dashboard/main/employees?XDEBUG_SESSION_START=PHPSTORM`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
+            try {
+                const token = localStorage.getItem('JWT');
+                const response = await axios.get(`${connections.baseURL}/dashboard/main/employees?XDEBUG_SESSION_START=PHPSTORM`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+                commit('SET_EMPLOYEES_WITH_RATING', response.data);
+            }catch (error){
+                if (error.response){
+                    if (error.response.status === 400) {
+                        console.warn('Токен невалиден или не расшифрован:', error.response);
+                        localStorage.removeItem('JWT');
+                        localStorage.removeItem('Refresh');
+                        if (router.currentRoute.value.name !== 'core.authenticate') {
+                            router.push({ name: 'core.authenticate' });
+                        }
+                    }
+                    else if(error.response.status === 401) {
+                        console.warn('Токен не найден:', error.response);
+                    }
+                }else if (error.request) {
+                    // Запрос ушёл, но ответа нет (сеть, таймаут)
+                    console.error('Нет ответа от сервера:', error.request);
+                }else {
+                    // Ошибка на этапе настройки запроса
+                    console.error('Ошибка запроса:', error.message);
                 }
-
-            );
-            commit('SET_EMPLOYEES_WITH_RATING', response.data);
+            }
         },
-
         // eslint-disable-next-line no-unused-vars
         async getPositiveReviewsByEmployeeAction({state, commit}, employeeId) {
             const params = {employeeId: employeeId}
