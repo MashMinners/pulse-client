@@ -25,7 +25,7 @@ export const coreModule = {
     actions: {
         // eslint-disable-next-line no-unused-vars
         async doLoginAction({state, commit}, data){
-            const response = await axios.post(`${connections.baseURL}/auth/doAuth?XDEBUG_SESSION_START=PHPSTORM`, data)
+            const response = await axios.post(`${connections.baseURL}/auth/doAuth?XDEBUG_SESSION_START=PHPSTORM`, data, { withCredentials: true })
             //Здесь логично проверять статус
             if (response.status === 200){
                 const accessToken = response.data.AccessToken;
