@@ -75,6 +75,7 @@ export const dashboardModule = {
                 const token = localStorage.getItem('JWT');
                 const response = await axios.get(`${connections.baseURL}/dashboard/main/employees?XDEBUG_SESSION_START=PHPSTORM`,
                     {
+                        withCredentials: true,
                         headers: {
                             Authorization: `Bearer ${token}`,
                         },
