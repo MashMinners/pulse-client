@@ -3,6 +3,7 @@ import axios from "axios";
 
 export const appModule = {
     state:() => ({
+        choice: null,
         pacient: null,
         reviewStatus: null,
         employee: {
@@ -31,6 +32,9 @@ export const appModule = {
         }
     },
     mutations: {
+        ['SET_FEEDBACK_CHOICE'](state, choice){
+            state.choice = choice;
+        },
         ['SET_EMPLOYEE'](state, employee){
             state.employee.employeeId = employee.employees_employee_id;
             state.employee.employeeFullName = employee.employees_employee_surname + ' ' + employee.employees_employee_first_name + ' ' +employee.employees_employee_second_name;
@@ -52,6 +56,7 @@ export const appModule = {
             const params = {employeeId: employeeId}
             const response = await axios.get(`${connections.baseURL}/app/employee/get`,{params});
             commit('SET_EMPLOYEE', response.data);
+            console.log(state.choice)
         },
 
         async sendPositiveReviewAction({state, commit}, review) {
@@ -82,6 +87,9 @@ export const appModule = {
                 reviewTelephone: review.telephone
             });
             commit('FINISH', {pacient: review.pacient, reviewStatus: review.reviewStatus})
+        },
+        setFeedbackChoiceAction({ commit }, choice){
+            commit('SET_FEEDBACK_CHOICE', choice);
         }
     },
     namespaced: true

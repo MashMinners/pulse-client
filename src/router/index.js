@@ -19,6 +19,16 @@ const routes = [
         return import('../views/ReviewCollector/StartPageView.vue')
       },
     },
+  {
+    path: '/app/employee/:uuid',
+    name: 'employee',
+    meta: {
+      layout: 'Application'
+    },
+    component: function () {
+      return import('../views/ReviewCollector/EmployeePageView.vue')
+    },
+  },
     {
       path: '/app/review/positive/:uuid',
       name: 'positiveReview',
@@ -56,7 +66,7 @@ const routes = [
         layout: 'Application'
       },
       component: function () {
-        return import('../views/ReviewCollector/InformationPageView.vue')
+        return import('../views/ReviewCollector/StartPageView.vue')
       },
     },
     //DASHBOARD
