@@ -1,6 +1,7 @@
 import connections from "@/configs/connections";
 import axios from "axios";
 import router from "@/router";
+import store from "@/store/index";
 
 export const dashboardModule = {
     state:() => ({
@@ -72,7 +73,7 @@ export const dashboardModule = {
         // eslint-disable-next-line no-unused-vars
         async getEmployeesWithRatingAction({state, commit}) {
             try {
-                const token = localStorage.getItem('JWT');
+                const token = store.getters['core/accessToken'];
                 const response = await axios.get(`${connections.baseURL}/dashboard/main/employees?XDEBUG_SESSION_START=PHPSTORM`,
                     {
                         withCredentials: true,
@@ -86,8 +87,8 @@ export const dashboardModule = {
                 if (error.response){
                     if (error.response.status === 400) {
                         console.warn('Токен невалиден или не расшифрован:', error.response);
-                        localStorage.removeItem('JWT');
-                        localStorage.removeItem('Refresh');
+                        //localStorage.removeItem('JWT');
+                        //localStorage.removeItem('Refresh');
                         if (router.currentRoute.value.name !== 'core.authenticate') {
                             router.push({ name: 'core.authenticate' });
                         }

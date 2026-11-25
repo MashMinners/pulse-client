@@ -1,5 +1,7 @@
+import store from '@/store'
+
 export default function process ({ next, router }) {
-  const jwt = localStorage.getItem('JWT')
+  const jwt = store.state["core/accessToken"];//localStorage.getItem('JWT')
   if (jwt) {
     router.push({ name: 'DashboardMain' })
   } else {

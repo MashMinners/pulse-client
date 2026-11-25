@@ -1,19 +1,17 @@
-import {doRefresh} from "@/services/RefreshTokens";
 
+import store from '@/store'
+// eslint-disable-next-line no-unused-vars
 export default async function process ({ next, router }) {
-    const currentAccessToken = localStorage.getItem('JWT')
+    const currentAccessToken = store.getters['core/accessToken']
     if (currentAccessToken) {
         return next()
-    } else {
-        const currentRefreshToken = localStorage.getItem('RefreshToken')
-        if (currentRefreshToken) {
-            await doRefresh(currentRefreshToken)
-            console.log('Y\'ll be redirecting after 3 seconds')
-            // eslint-disable-next-line no-unused-vars
-            await new Promise((resolve, reject) => setTimeout(resolve, 3000))
-            return router.push({ name: 'DashboardMain' })
-        } else {
-            return router.push({ name: 'core.authenticate' })
-        }
+    }
+    await store.dispatch('core/doRefresh') // при namespaced: true
+    if (store.getters['core/accessToken']) {
+        console.log(currentAccessToken)
+        return next()
+    }
+    else {
+        return router.push({ name: 'core.authenticate' })
     }
 }
