@@ -29,6 +29,9 @@ export const appModule = {
         },
         getEmployeeId(state){
             return state.employee.employeeId
+        },
+        getFeedbackChoice(state){
+            return state.choice
         }
     },
     mutations: {
