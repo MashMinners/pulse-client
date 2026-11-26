@@ -34,8 +34,18 @@
                   <i class="pi pi-exclamation-circle text-xl"></i>
                 </template>
                 <div class="line-height-3 text-sm">
-                  <span v-if="getPacient"><b><i>{{ getPacient }}</i></b> Ваш отзыв принят. Спасибо! Если Вы хотите, чтобы мы с Вами связались, пожалуйста, нажмите кнопку «Жду обратную связь»</span>
-                  <span v-else>Ваш отзыв принят. Спасибо! Если Вы хотите, чтобы мы с Вами связались, пожалуйста, нажмите кнопку «Жду обратную связь»</span>
+                  <!-- Вывод имени, если оно есть -->
+                  <span v-if="getPacient"><b><i>{{ getPacient }}</i></b>, </span>
+
+                  <!-- Текст для АНОНИМНОГО отзыва -->
+                  <span v-if="feedbackChoice === 'anonymous'">
+                    Ваша жалоба принята. Спасибо!
+                  </span>
+
+                  <!-- Текст для отзыва С КОНТАКТАМИ -->
+                  <span v-else>
+                    Ваш отзыв принят. Спасибо! Если Вы хотите, чтобы мы с Вами связались, пожалуйста, нажмите кнопку «Жду обратную связь».
+                  </span>
                 </div>
               </prime-message>
             </div>
@@ -48,8 +58,8 @@
               Автоматический переход через {{ timerCount }} сек.
             </p>
 
-            <!-- Кнопка -->
-            <div v-if="getReviewStatus === '0'" class="flex justify-content-center mt-2">
+            <!-- Кнопка (скрыта для анонимных отзывов) -->
+            <div v-if="getReviewStatus === '0' && feedbackChoice !== 'anonymous'" class="flex justify-content-center mt-2">
               <prime-button
                   label="Жду обратную связь"
                   size="large"
@@ -102,7 +112,9 @@ export default {
   computed: {
     ...mapGetters({
       getReviewStatus: "app/getReviewStatus",
-      getPacient: "app/getPacient"
+      getPacient: "app/getPacient",
+      // Добавляем геттер для получения выбора пользователя
+      feedbackChoice: "app/getFeedbackChoice"
     })
   },
   watch: {
