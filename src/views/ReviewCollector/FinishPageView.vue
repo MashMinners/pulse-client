@@ -55,7 +55,7 @@
                   size="large"
                   severity="info"
                   icon="pi pi-clock"
-                  @click="goInfo"
+                  @click="requestFeedback"
               ></prime-button>
             </div>
 
@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "FinishPageView",
@@ -78,7 +78,11 @@ export default {
     }
   },
   methods: {
-    goInfo(){
+    ...mapActions({
+      requestFeedbackAction: "app/requestFeedbackAction"
+    }),
+    requestFeedback(){
+      this.requestFeedbackAction();
       this.$router.push('/info');
     },
     start(){

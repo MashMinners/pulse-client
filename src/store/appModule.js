@@ -5,6 +5,7 @@ export const appModule = {
     state:() => ({
         choice: null,
         pacient: null,
+        reviewId: null,
         reviewStatus: null,
         employee: {
             employeeId: null,
@@ -51,6 +52,7 @@ export const appModule = {
         ['FINISH'](state, data){
             state.pacient = data.pacient
             state.reviewStatus = data.reviewStatus
+            state.reviewId = data.reviewId
         }
     },
     actions: {
@@ -75,7 +77,7 @@ export const appModule = {
                 reviewPacient: review.pacient,
                 reviewTelephone: review.telephone
             });
-            commit('FINISH', {pacient: review.pacient, reviewStatus: review.reviewStatus})
+            commit('FINISH', {pacient: review.pacient, reviewStatus: review.reviewStatus, reviewId: response.data})
         },
 
         async sendNegativeReviewAction({state, commit}, review) {
@@ -89,10 +91,16 @@ export const appModule = {
                 reviewPacient: review.pacient,
                 reviewTelephone: review.telephone
             });
-            commit('FINISH', {pacient: review.pacient, reviewStatus: review.reviewStatus})
+            commit('FINISH', {pacient: review.pacient, reviewStatus: review.reviewStatus, reviewId: response.data})
         },
         setFeedbackChoiceAction({ commit }, choice){
             commit('SET_FEEDBACK_CHOICE', choice);
+        },
+        async requestFeedbackAction({state}){
+            // eslint-disable-next-line no-unused-vars
+            const response = await axios.put(`${connections.baseURL}/app/review/request-feedback?XDEBUG_SESSION_START=PHPSTORM`, {
+                reviewId: state.reviewId
+            });
         }
     },
     namespaced: true
