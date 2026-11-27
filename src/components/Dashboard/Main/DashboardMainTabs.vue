@@ -1,26 +1,59 @@
 <template>
-  <div>
-    <prime-tabs value="0">
-      <prime-tabList>
-        <prime-tab value="0">Рейтинг сотрудников</prime-tab>
-      </prime-tabList>
-      <prime-tab-panels>
-        <prime-tab-panel value="0">
-          <div class="formgrid grid">
-            <div id="employyes-rating-table" class="col-6">
-              <div v-if="getEmployeesWithRating.length !==0">
-                <prime-message severity="success">Рейтинг сотрудников</prime-message>
+  <div class="p-3 md:p-4 w-full">
+    <!-- Карточка на всю ширину, но с внутренними отступами -->
+    <prime-card class="w-full shadow-2 border-round">
+      <template #title>
+        <div class="flex align-items-center justify-content-between w-full px-2">
+          <div class="flex align-items-center gap-2">
+            <i class="pi pi-chart-bar text-primary text-2xl"></i>
+            <span class="text-xl font-bold">Рейтинг сотрудников</span>
+          </div>
+          <!-- Можно добавить кнопку обновления или дату -->
+          <span class="text-sm text-color-secondary">Актуально на сегодня</span>
+        </div>
+      </template>
+
+      <template #content>
+        <!-- Полноэкранная сетка -->
+        <div class="grid w-full m-0">
+
+          <!-- Левая колонка: Таблица (занимает больше места) -->
+          <div class="col-12 lg:col-6 p-2">
+            <div class="h-full border-round surface-50 border-1 surface-border p-3 flex flex-column">
+              <div class="flex align-items-center gap-2 mb-3 px-1">
+                <i class="pi pi-users text-primary"></i>
+                <span class="font-bold text-lg">Сотрудники</span>
               </div>
-              <dashboard-main-employees-table :records="getEmployeesWithRating"></dashboard-main-employees-table>
-            </div>
-            <div id="employees-rating-chart"  class="col-6">
-              <prime-message severity="success">Соотношение всех отзывов: положительные/отрицательные</prime-message>
-              <dashboard-main-employees-chart></dashboard-main-employees-chart>
+
+              <div class="flex-1">
+                <div v-if="getEmployeesWithRating.length !== 0">
+                  <!-- Передаем records -->
+                  <dashboard-main-employees-table :records="getEmployeesWithRating"></dashboard-main-employees-table>
+                </div>
+                <div v-else class="flex align-items-center justify-content-center h-full min-h-20rem">
+                  <prime-message severity="info" :closable="false">Рейтинг пока не сформирован</prime-message>
+                </div>
+              </div>
             </div>
           </div>
-        </prime-tab-panel>
-      </prime-tab-panels>
-    </prime-tabs>
+
+          <!-- Правая колонка: График -->
+          <div class="col-12 lg:col-6 p-2">
+            <div class="h-full border-round surface-50 border-1 surface-border p-3 flex flex-column">
+              <div class="flex align-items-center gap-2 mb-3 px-1">
+                <i class="pi pi-chart-pie text-primary"></i>
+                <span class="font-bold text-lg">Соотношение отзывов</span>
+              </div>
+
+              <div class="flex-1 flex align-items-center justify-content-center">
+                <dashboard-main-employees-chart class="w-full"></dashboard-main-employees-chart>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </template>
+    </prime-card>
   </div>
 </template>
 
